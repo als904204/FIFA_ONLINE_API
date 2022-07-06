@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<div th:replace="/layout/header.html :: fragment-header"></div>
+<div th:replace="/layout/navbar.html :: fragment-nav"></div>
+
+    <h1 style="text-align: center">FIFA 로고 </h1>
+    <div class="container" style="margin-top: 150px;">
+        <h3 style="text-align: center">구단주 검색</h3>
+        <form>
+            <div class="mx-auto" style="width:350px;">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="nickname" placeholder="구단주명..." style="margin-right: 10px;">
+                    <button class="btn btn-primary" type="button" id="btn-user-info">검색</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="jumbotron text-center"  style="margin-top: 5%;" >
+        대충 피파 유튜브
+    </div>
+
+    <div class="jumbotron text-center"  style="margin-top: 5%;" >
+        인기 게시글
+    </div>
+<hr />
+<div th:replace="/layout/footer.html :: fragment-footer"></div>
+<div th:replace="/layout/config.html :: fragment-config"></div>
+</html>
