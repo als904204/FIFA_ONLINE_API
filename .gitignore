@@ -37,4 +37,4 @@ out/
 .vscode/
 
 #api
-application-API.properties
+application-fifa.properties
