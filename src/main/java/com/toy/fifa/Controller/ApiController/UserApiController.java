@@ -14,9 +14,15 @@ public class UserApiController {
 
     private final UserService userService;
 
-    @GetMapping("/api/v1/user/{nickname}")
-    public UserResponseDto get(@PathVariable String nickname) {
-        return userService.searchUserInfo(nickname);
-    }
 
+//    @GetMapping("/api/v1/user/{nickname}")
+//    public UserResponseDto get(@PathVariable String nickname) {
+//        return userService.searchUserInfo(nickname);
+//    }
+
+    @GetMapping("/api/v1/user/{nickname}")
+    public Long requestUserInfo(@PathVariable String nickname) {
+        UserApiReponseDto userApiReponseDto = userService.requestUserInfo(nickname);
+        return userService.save(userApiReponseDto);
+    }
 }
