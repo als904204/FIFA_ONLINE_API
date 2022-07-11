@@ -1,6 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <nav th:fragment="fragment-nav">
-    <h1>nav</h1>
+<link th:href="@{/css/navbar.css}" rel="stylesheet">
+    <div class="div-box1">
+        <div style="float:left;">
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        </div>
+        <nav class="navbar navbar-expand-sm py-0.1" style="background:#5383E8 ">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"></a>
+
+                <div class="collapse navbar-collapse navbar-font" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" >홈 &nbsp; </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">랭커선수 픽 &nbsp;</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">커뮤니티&nbsp;</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">추가메뉴&nbsp;</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+    <div class="grey-line">
+       &nbsp;
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
 </nav>
 </html>

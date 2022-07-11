@@ -2,7 +2,7 @@ package com.toy.fifa.Service;
 
 
 import com.toy.fifa.Config.ApiKeyConfig;
-import com.toy.fifa.Entity.DTO.UserResponseDto;
+import com.toy.fifa.Entity.DTO.UserApiResponseDto;
 import lombok.RequiredArgsConstructor;
 import javax.inject.Inject;
 import org.springframework.http.HttpEntity;
@@ -22,14 +22,14 @@ public class UserApiClient {
     private ApiKeyConfig apiKeyConfig;
 
 
-    public UserResponseDto requestUserInfo(String nickname) {
+    public UserApiResponseDto requestUserInfo(String nickname) {
         final String UserInfoUrl = "https://api.nexon.co.kr/fifaonline4/v1.0/users?nickname={nickname}";
 
         final HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Authorization", apiKeyConfig.getKey());
 
         final HttpEntity<String> entity = new HttpEntity<>(httpHeaders);
-        return restTemplate.exchange(UserInfoUrl, HttpMethod.GET, entity, UserResponseDto.class, nickname).getBody();
+        return restTemplate.exchange(UserInfoUrl, HttpMethod.GET, entity, UserApiResponseDto.class, nickname).getBody();
     }
 
 

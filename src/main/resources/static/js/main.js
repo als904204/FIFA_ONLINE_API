@@ -8,13 +8,16 @@ var main = {
     search_user_info : function () {
         const nickname = $('#nickname').val();
 
+        if (nickname === '') {
+            alert('구단주명을 입력해주세요');
+        }
         $.ajax({
             type: 'GET',
             url: '/api/v1/user/'+nickname,
-            dataType: 'json',
+            dataType: 'text',
             contentType: 'application/json; charset=utf-8'
-        }).done(function (res) {
-            alert(JSON.stringify(res));
+        }).done(function (id) {
+            window.location.href = '/user/info/' + nickname;
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });

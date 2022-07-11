@@ -1,7 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <header div th:fragment="fragment-header">
-  <h4>로고</h4>
-  <link th:href="@{/css/header.css}" rel="stylesheet">
+<link th:href="@{/css/header.css}" rel="stylesheet">
+
+    <nav class="navbar navbar-expand-sm py-0" style="background:#28344E ">
+        <div class="container-fluid" style="background: #5383E8">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav" style="background: #28344E " >
+               <ul class="navbar-nav">
+
+                     <li class="nav-item" style="background: #5383E8">
+<!--                         <a class="nav-link active" aria-current="page" href="#" style="color: white">FIFA_ONLINE_4 &nbsp;</a>-->
+                         <div class="image-logo">
+                             <img th:src="@{/img/logo.png}" alt="main_logo">
+                         </div>
+                     </li>
+
+                     <li class="nav-item">
+                         <a class="nav-link" href="#" style="color: #C5C0B4; ">피파4홈페이지</a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="#" style="color: #C5C0B4">이벤트1</a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="#" style="color:#C5C0B4;">이벤트2</a>
+                     </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
 </header>
 </html>

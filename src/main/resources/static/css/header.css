@@ -1,6 +1,9 @@
-.logo {
-    user-select: auto;
-    height: 100px;
-    width: 100px;
+
+.image-logo{
+    float: left;
+    overflow: hidden;
     display: flex;
+    align-items: center;
+    justify-content: center;
+
 }

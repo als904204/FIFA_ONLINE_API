@@ -1,6 +1,9 @@
 package com.toy.fifa.Service;
 
-import com.toy.fifa.Entity.DTO.UserResponseDto;
+import com.toy.fifa.Entity.DTO.UserApiResponseDto;
+import com.toy.fifa.Entity.DTO.UserInfoResponseDto;
+import com.toy.fifa.Entity.User;
+import com.toy.fifa.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,9 +13,23 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserApiClient userApiClient;
+    private final UserRepository userRepository;
 
     @Transactional(readOnly = true)
-    public UserResponseDto searchUserInfo(String nickname) {
+    public UserApiResponseDto requestUserInfo(String nickname) {
         return userApiClient.requestUserInfo(nickname);
+    }
+
+    @Transactional
+    public String save(UserApiResponseDto userApiResponseDto) {
+        return userRepository.save(userApiResponseDto.toEntity()).getNickname();
+    }
+
+
+    public UserInfoResponseDto userInfoById(String nickname) {
+        User entity = userRepository.findById(nickname).orElseThrow(() -> {
+             return new IllegalArgumentException("존재하지않는 구단주명입니다");
+        });
+        return new UserInfoResponseDto(entity);
     }
 }

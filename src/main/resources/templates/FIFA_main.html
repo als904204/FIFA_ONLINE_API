@@ -2,13 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
-<div th:replace="/layout/header.html :: fragment-header"></div>
-<div th:replace="/layout/navbar.html :: fragment-nav"></div>
 
-    <h1 style="text-align: center">FIFA 로고 </h1>
+<body style="background: #5383E8;">
+
+    <div th:replace="/layout/header.html :: fragment-header"></div>
+    <div th:replace="/layout/navbar.html :: fragment-nav"></div>
+    <!-- Main start-->
+    <h1 style="text-align: center; font-size: 50px; color: white">
+        로고
+    </h1>
     <div class="container" style="margin-top: 150px;">
-        <h3 style="text-align: center">구단주 검색</h3>
+        <br/>
         <form>
             <div class="mx-auto" style="width:350px;">
                 <div class="input-group">
@@ -25,10 +31,20 @@
     <div class="jumbotron text-center"  style="margin-top: 5%;" >
         인기 게시글
     </div>
-<hr />
-<div th:replace="/layout/footer.html :: fragment-footer"></div>
-<div th:replace="/layout/config.html :: fragment-config"></div>
+
+
+    <br/>
+    <hr />
+    <!-- Main end-->
+
+    <div th:replace="/layout/footer.html :: fragment-footer"></div>
+    <div th:replace="/layout/config.html :: fragment-config"></div>
+
+</body>
+
+
 <script src="/js/main.js"></script>
+
 
 
 
