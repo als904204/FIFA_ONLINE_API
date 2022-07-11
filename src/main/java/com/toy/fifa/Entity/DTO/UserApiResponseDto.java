@@ -11,6 +11,7 @@ public class UserApiResponseDto {
     private String nickname;
     private int level;
 
+    // ApiDto -> User Entity
     public User toEntity() {
         return User.builder()
                 .accessId(accessId)

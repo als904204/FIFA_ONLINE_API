@@ -9,25 +9,3 @@ public class ApiExample {
 
     }
 }
-
-class Bakery {
-    public class Bread{
-        void eat() {
-            System.out.println("eat Bread");
-        }
-    }
-
-    public class Cake{
-        void eat() {
-            System.out.println("eat Cake");
-        }
-    }
-
-    public Bread getBread() {
-        return new Bread();
-    }
-
-    public Cake getCake() {
-        return new Cake();
-    }
-}

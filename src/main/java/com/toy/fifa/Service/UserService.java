@@ -26,7 +26,7 @@ public class UserService {
     }
 
 
-    public UserInfoResponseDto userInfoById(String nickname) {
+    public UserInfoResponseDto findUserInfoById(String nickname) {
         User entity = userRepository.findById(nickname).orElseThrow(() -> {
              return new IllegalArgumentException("존재하지않는 구단주명입니다");
         });

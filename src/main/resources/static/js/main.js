@@ -4,6 +4,11 @@ var main = {
         $('#btn-user-info').on('click', function () {
             _this.search_user_info();
         });
+        $('#nickname').on('keyup', function (e) {
+            if(e.key==='Enter'||e.keyCode===13){
+                _this.search_user_info();
+            }
+        })
     },
     search_user_info : function () {
         const nickname = $('#nickname').val();
@@ -22,6 +27,8 @@ var main = {
             alert(JSON.stringify(error));
         });
     }
+
+
 };
 
 main.init();

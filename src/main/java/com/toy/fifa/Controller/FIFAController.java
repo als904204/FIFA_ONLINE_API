@@ -22,7 +22,7 @@ public class FIFAController {
 
     @GetMapping("/user/info/{nickname}")
     public String userInfo(@PathVariable String nickname, Model model) {
-        UserInfoResponseDto userInfoResponseDto = userService.userInfoById(nickname);
+        UserInfoResponseDto userInfoResponseDto = userService.findUserInfoById(nickname);
         model.addAttribute("userInfo",userInfoResponseDto);
         return "user-info";
     }
