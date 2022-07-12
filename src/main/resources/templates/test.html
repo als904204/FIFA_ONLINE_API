@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initia-scale=1.0">
+    <title>TEST WEB PAGE</title>
+    <link href="/css/test.css" rel="stylesheet" />
+</head>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<h1>API TEST</h1>
+
+    <input type="text" id="bookName">
+    <button id="searchBtn">검색</button>
+<p></p>
+<script>
+   $(document).ready(function (){
+       $("#searchBtn").click(function (){
+           $.ajax({
+               method: "GET",
+               url: "https://dapi.kakao.com/v3/search/book?target=title",
+               data: {query : $("#bookName").val() },
+               headers: { Authorization: "KakaoAK 4748cbd7f4f99b9810ebfc84ac33355f" }
+           })
+               .done(function( msg ) {
+                   console.log(msg.documents[0].title);
+                   console.log(msg.documents[0].thumbnail);
+                   $( "p" ).append( "<strong>"+msg.documents[0].title+"</strong>" );
+                   $( "p" ).append( "<img src='"+msg.documents[0].thumbnail+"'/>" );
+               });
+       })
+   })
+
+</script>
+</body>
+</html>

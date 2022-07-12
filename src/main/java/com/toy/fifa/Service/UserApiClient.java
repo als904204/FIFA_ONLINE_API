@@ -21,16 +21,16 @@ public class UserApiClient {
     @Inject
     private ApiKeyConfig apiKeyConfig;
 
+    private static final String Authorization ="Authorization";
+
 
     public UserApiResponseDto requestUserInfo(String nickname) {
         final String UserInfoUrl = "https://api.nexon.co.kr/fifaonline4/v1.0/users?nickname={nickname}";
-
         final HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set("Authorization", apiKeyConfig.getKey());
+        httpHeaders.set(Authorization, apiKeyConfig.getKey());
 
         final HttpEntity<String> entity = new HttpEntity<>(httpHeaders);
         return restTemplate.exchange(UserInfoUrl, HttpMethod.GET, entity, UserApiResponseDto.class, nickname).getBody();
     }
-
 
 }

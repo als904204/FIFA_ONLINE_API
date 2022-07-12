@@ -20,6 +20,7 @@ public class UserService {
         return userApiClient.requestUserInfo(nickname);
     }
 
+
     @Transactional
     public String save(UserApiResponseDto userApiResponseDto) {
         return userRepository.save(userApiResponseDto.toEntity()).getNickname();

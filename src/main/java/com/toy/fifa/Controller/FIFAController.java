@@ -26,4 +26,5 @@ public class FIFAController {
         model.addAttribute("userInfo",userInfoResponseDto);
         return "user-info";
     }
+
 }

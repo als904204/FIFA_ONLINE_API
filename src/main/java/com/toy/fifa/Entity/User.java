@@ -20,9 +20,13 @@ public class User {
 
     private String accessId;
 
-
-
     private int level;
+
+    private int matchType;
+
+    private int division;
+
+    private String achievementDate;
 
     public User() {
 
