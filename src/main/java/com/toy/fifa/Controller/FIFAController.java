@@ -1,7 +1,7 @@
 package com.toy.fifa.Controller;
 
 import com.toy.fifa.Entity.DTO.UserInfoResponseDto;
-import com.toy.fifa.Service.UserService;
+import com.toy.fifa.Service.FIFA.FIFA_api_UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class FIFAController {
 
-    private final UserService userService;
+    private final FIFA_api_UserService FIFAapiUserService;
 
     @GetMapping("/")
     public String index() {
@@ -21,7 +21,7 @@ public class FIFAController {
 
     @GetMapping("/user/info/{nickname}")
     public String userInfo(@PathVariable String nickname, Model model) {
-        UserInfoResponseDto userInfoResponseDto = userService.findUserInfoById(nickname);
+        UserInfoResponseDto userInfoResponseDto = FIFAapiUserService.findUserInfoById(nickname);
         model.addAttribute("userInfo",userInfoResponseDto);
        return "/FIFA/user-info";
     }

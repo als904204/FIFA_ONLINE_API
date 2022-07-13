@@ -1,34 +1,34 @@
 package com.toy.fifa.Entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-
-@AllArgsConstructor
+@NoArgsConstructor
 @Getter
-@Builder
 @Entity
 public class User {
 
     @Id
-    private String nickname;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private String accessId;
+    @Column(nullable = false, unique = true)
+    private String username;
 
-    private int level;
+    @Column(nullable = false,length = 255)
+    private String password;
 
-    private int matchType;
+    @Column(nullable = false)
+    private String email;
 
-    private int division;
-
-    private String achievementDate;
-
-    public User() {
-
+    public User(Long id, String username, String password, String email) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
     }
+
+
 }

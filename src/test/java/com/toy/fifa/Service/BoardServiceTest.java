@@ -2,9 +2,10 @@ package com.toy.fifa.Service;
 
 import com.toy.fifa.Entity.Board;
 import com.toy.fifa.Entity.Reply;
+import com.toy.fifa.Entity.User;
 import com.toy.fifa.Repository.BoardRepository;
 import com.toy.fifa.Repository.ReplyRepository;
-import org.junit.jupiter.api.AfterEach;
+import com.toy.fifa.Service.Community.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,21 +26,33 @@ class BoardServiceTest {
     @Autowired
     private ReplyRepository replyRepository;
 
+    @Autowired
+    private UserService userService;
+
 
 
     @Test
-
     void 게시글_생성() {
 
         //WHEN
         Board b1 = new Board();
-        b1.setTitle("What is FIFA_Helper");
-        b1.setContent("I want to know this web site");
+        b1.setTitle("제목");
+        b1.setContent("내용");
         b1.setCreateDate(LocalDateTime.now());
+        b1.setCount(50);
+
+        User user = new User(1L, "user1", "pwd", "naver@naver");
+        User u1 = userService.join(user);
+        User author = userService.findById(1L);
+        b1.setAuthor(author);
 
         Board board = boardRepository.save(b1);
-        Long findBoard = boardRepository.findById(board.getId()).get().getId();
+        Long findBoard = boardRepository.findById(board.getId()).orElseThrow().getId();
         assertThat(findBoard).isEqualTo(board.getId());
+
+        // 1번 유저가 첫번째로 작성한 게시글 isEqualTo 1번 게시글?
+        Optional<Board> getAuthor = boardRepository.findById(board.getAuthor().getId());
+        assertThat(u1.getId()).isEqualTo(getAuthor.get().getId());
     }
 
 

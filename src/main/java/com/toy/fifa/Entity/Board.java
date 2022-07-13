@@ -22,12 +22,18 @@ public class Board {
     @Column(length = 200)
     private String title;
 
-    @Column(columnDefinition = "TEXT")
+    @Lob // 대용량
     private String content;
 
     private LocalDateTime createDate;
 
+    private int count;
 
     @OneToMany(mappedBy = "board",cascade = CascadeType.REMOVE)
     private List<Reply> replyList;
+
+
+    @ManyToOne(fetch = FetchType.EAGER) // Board 테이블 조회할 때 유저 ID 값을 무조건 가져옴
+    @JoinColumn(name = "userId")
+    private User author;
 }

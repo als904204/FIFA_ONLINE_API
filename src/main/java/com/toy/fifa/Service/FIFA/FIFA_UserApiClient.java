@@ -1,4 +1,4 @@
-package com.toy.fifa.Service;
+package com.toy.fifa.Service.FIFA;
 
 
 import com.toy.fifa.Config.ApiKeyConfig;
@@ -14,7 +14,7 @@ import org.springframework.http.HttpHeaders;
 
 @RequiredArgsConstructor
 @Service
-public class UserApiClient {
+public class FIFA_UserApiClient {
 
     private final RestTemplate restTemplate;
 

@@ -1,6 +1,6 @@
 package com.toy.fifa.Entity.DTO;
 
-import com.toy.fifa.Entity.User;
+import com.toy.fifa.Entity.FIFA_user_info;
 import lombok.Data;
 import lombok.Getter;
 
@@ -12,8 +12,8 @@ public class UserApiResponseDto {
     private int level;
 
     // ApiDto -> User Entity
-    public User toEntity() {
-        return User.builder()
+    public FIFA_user_info toEntity() {
+        return FIFA_user_info.builder()
                 .accessId(accessId)
                 .nickname(nickname)
                 .level(level).build();

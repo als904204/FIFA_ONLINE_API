@@ -1,12 +1,11 @@
 package com.toy.fifa.Controller;
 
 import com.toy.fifa.Entity.Board;
-import com.toy.fifa.Service.BoardService;
+import com.toy.fifa.Service.Community.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 

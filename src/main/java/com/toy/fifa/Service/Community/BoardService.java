@@ -1,4 +1,4 @@
-package com.toy.fifa.Service;
+package com.toy.fifa.Service.Community;
 
 import com.toy.fifa.Entity.Board;
 import com.toy.fifa.Repository.BoardRepository;
