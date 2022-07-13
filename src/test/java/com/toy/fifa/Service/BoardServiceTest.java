@@ -28,7 +28,7 @@ class BoardServiceTest {
 
 
     @Test
-    @Transactional
+
     void 게시글_생성() {
 
         //WHEN

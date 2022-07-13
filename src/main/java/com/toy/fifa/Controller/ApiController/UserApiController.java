@@ -18,7 +18,7 @@ public class UserApiController {
     @GetMapping("/api/v1/user/{nickname}")
     public String requestUserInfo(@PathVariable String nickname) {
         UserApiResponseDto userApiResponseDto = userService.requestUserInfo(nickname);
-        return userService.save(userApiResponseDto);
+        return userService.userInfoSave(userApiResponseDto);
     }
 
 

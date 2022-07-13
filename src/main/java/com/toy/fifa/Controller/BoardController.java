@@ -17,10 +17,8 @@ public class BoardController {
 
     private final BoardService boardService;
 
-
-    @RequestMapping("/board/list")
+    @RequestMapping("/board/boardList")
     public String boardList(Model model) {
-
         List<Board> boardList = boardService.getBoardList();
         model.addAttribute("boardList", boardList);
         return "/Board/boardList";

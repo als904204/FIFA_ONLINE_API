@@ -22,7 +22,7 @@ public class UserService {
 
 
     @Transactional
-    public String save(UserApiResponseDto userApiResponseDto) {
+    public String userInfoSave(UserApiResponseDto userApiResponseDto) {
         return userRepository.save(userApiResponseDto.toEntity()).getNickname();
     }
 
@@ -33,4 +33,6 @@ public class UserService {
         });
         return new UserInfoResponseDto(entity);
     }
+
+
 }

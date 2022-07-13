@@ -5,17 +5,25 @@
 </head>
 <div th:replace="/layout/header.html :: fragment-header"></div>
 <div th:replace="/layout/navbar.html :: fragment-nav"></div>
+<p></p>
+
 <div class="container mx-auto" style="margin-top: 150px; width: 1000px;">
-    <h4 style="text-align : center" th:text="|유저 고유 식별 ID : ${userInfo.getAccessId()}|">고유ID</h4>
+    <h4 id="user-info-accessId" style="text-align : center" th:text="|유저 고유 식별 ID : ${userInfo.getAccessId()}|">고유ID</h4>
     <h4 style="text-align : center" th:text="|구단주 닉네임 : ${userInfo.getNickname()}|">날강두</h4>
     <h4 style="text-align : center" th:text="|구단주 레벨 : ${userInfo.getLevel()}|">1111</h4>
+</div>
+
+<div class="container mx-auto" style="width: 80%; text-align: center">
+    <h1 id="user-division-match-type">최고 등급 : </h1>
+    <h1 id="user-division">매치 기록 : </h1>
+    <h1 id="user-division-date">거래 기록 : </h1>
 </div>
 
 <hr />
 <div th:replace="/layout/footer.html :: fragment-footer"></div>
 <div th:replace="/layout/config.html :: fragment-config"></div>
 <script src="/js/main.js"></script>
-
+<script src="/js/user-division.js"></script>
 
 
 </html>

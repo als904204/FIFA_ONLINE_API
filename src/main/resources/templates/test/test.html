@@ -30,8 +30,41 @@
                    $( "p" ).append( "<img src='"+msg.documents[0].thumbnail+"'/>" );
                });
        })
-   })
+   });
 
 </script>
+<hr>
+
+<div>
+    <h1>API TEST_2</h1>
+    <script>
+        function ajax() {
+            fetch("https://yts.mx/api/v2/list_movies.json").then(function (response) {
+
+                if (response.status != 200) {
+                    alert("Failed Connect to Server")
+                } else {
+                    return response.json();
+                }
+            }).then(function (jsonData) { // response.json() = data
+                console.log(jsonData)
+                var data = jsonData.data.movies;
+
+                for (var i = 0; i < data.length; i++) {
+                    var title = data[i].title;
+                    var year = data[i].year;
+                    var img = data[i].medium_cover_image;
+                    var summary = data[i].summary;
+                    var genres = data[i].genres;
+
+                    console.log(title,year,img,summary,genres)
+                }
+            })
+        }
+        (function () {
+            ajax();
+        })();
+    </script>
+</div>
 </body>
 </html>
