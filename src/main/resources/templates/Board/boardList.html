@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="/layout/header.html :: fragment-header"></div>
-    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/boardList.css}" rel="stylesheet">
 </head>
 
 
@@ -13,15 +13,30 @@
     <h1 style="text-align: center; font-size: 50px;">
         로고2
     </h1>
-<div class="container">
-    <div class="card m-5" th:each="board : ${boardList}">
-        <div class="card-body">
-            <strong th:text="${board.author.username}">유저닉네임</strong>
-            <strong><h2 class="card-title" th:text="${board.getTitle()}" style="font-size: 20px">게시글 제목</h2></strong>
-            <h4 class="card-content" th:text="${board.getContent()}">게시글 내용</h4>
-            <h4 th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}">게시글 작성일</h4>
-            <h4 th:text="${board.getCount()}">게시글 조회수</h4>
+<div class="container ">
+    <div class="card m-5"  th:each="board : ${boardList}">
+
+        <div class="card-header">
+            <div class="board-title">
+                <h6  th:text="${board.author.username}">작성자</h6>
+            </div>
+            <div >
+                <h4 class="mb-2 text-muted" th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}">게시글 작성일</h4>
+            </div>
         </div>
+
+        <div class="card-body">
+            <strong>
+                <h2 class="card-title" th:text="${board.getTitle()}" style="font-size: 20px;">게시글 제목</h2>
+            </strong>
+
+            <br />
+            <p class="card-text" th:text="${board.getContent()}">게시글 내용</p>
+
+        </div>
+    </div>
+    <div>
+        asdf
     </div>
 </div>
 <div th:replace="/layout/footer.html :: fragment-footer"></div>

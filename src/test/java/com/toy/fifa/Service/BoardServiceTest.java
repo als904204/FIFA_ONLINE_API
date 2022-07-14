@@ -36,12 +36,12 @@ class BoardServiceTest {
 
         //WHEN
         Board b1 = new Board();
-        b1.setTitle("제목");
-        b1.setContent("내용");
+        b1.setTitle("제목ddddddddddddddddd");
+        b1.setContent("내용ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
         b1.setCreateDate(LocalDateTime.now());
         b1.setCount(50);
 
-        User user = new User(1L, "user1", "pwd", "naver@naver");
+        User user = new User(1L, "user1ddddd", "pwd", "naver@naver");
         User u1 = userService.join(user);
         User author = userService.findById(1L);
         b1.setAuthor(author);
