@@ -1,35 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div th:replace="/layout/header.html :: fragment-header"></div>
     <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
 
+
+
 <body>
-<div th:replace="/layout/header.html :: fragment-header"></div>
 <div th:replace="/layout/navbar.html :: fragment-nav"></div>
 
-    <table>
-        <tr>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-        </tr>
-        <tr th:each="boardList :${boardList}">
-            <td th:text="${boardList.id}"></td>
-            <td th:text="${boardList.title}"></td>
-            <td th:text="${boardList.content}"></td>
-            <td th:text="${boardList.author}"></td>
-            <td th:text="${boardList.createDate}"></td>
-
-        </tr>
-    </table>
-
-
+    <h1 style="text-align: center; font-size: 50px;">
+        로고2
+    </h1>
+<div class="container">
+    <div class="card m-5" th:each="board : ${boardList}">
+        <div class="card-body">
+            <strong th:text="${board.author.username}">유저닉네임</strong>
+            <strong><h2 class="card-title" th:text="${board.getTitle()}" style="font-size: 20px">게시글 제목</h2></strong>
+            <h4 class="card-content" th:text="${board.getContent()}">게시글 내용</h4>
+            <h4 th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}">게시글 작성일</h4>
+            <h4 th:text="${board.getCount()}">게시글 조회수</h4>
+        </div>
+    </div>
+</div>
 <div th:replace="/layout/footer.html :: fragment-footer"></div>
 <div th:replace="/layout/config.html :: fragment-config"></div>
 </body>
+
 </html>
