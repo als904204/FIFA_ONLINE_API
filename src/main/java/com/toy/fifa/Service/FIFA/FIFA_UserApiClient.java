@@ -2,7 +2,7 @@ package com.toy.fifa.Service.FIFA;
 
 
 import com.toy.fifa.Config.ApiKeyConfig;
-import com.toy.fifa.Entity.DTO.UserApiResponseDto;
+import com.toy.fifa.DTO.FIFA_DTO.UserApiResponseDto;
 import lombok.RequiredArgsConstructor;
 import javax.inject.Inject;
 import org.springframework.http.HttpEntity;

@@ -2,7 +2,9 @@ package com.toy.fifa.Entity;
 
 
 import com.sun.istack.NotNull;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
@@ -10,6 +12,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@NoArgsConstructor
 @Setter
 @Getter
 @Entity
@@ -33,8 +36,9 @@ public class Board {
     private List<Reply> replyList;
 
 
-    @ManyToOne(fetch = FetchType.EAGER) // Board 테이블 조회할 때 유저 ID 값을 무조건 가져옴
-    @JoinColumn(name = "userId")
-    private User author;
+
+//    @ManyToOne(fetch = FetchType.EAGER) // Board 테이블 조회할 때 유저 ID 값을 무조건 가져옴
+//    @JoinColumn(name = "userId")
+//    private User author;
 
 }

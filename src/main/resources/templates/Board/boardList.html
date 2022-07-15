@@ -10,15 +10,28 @@
 <body>
 <div th:replace="/layout/navbar.html :: fragment-nav"></div>
 
+<!-- 로고 나중에 fragment 로 나누어야 함 -->
     <h1 style="text-align: center; font-size: 50px;">
         로고2
     </h1>
+
 <div class="container">
+    <div class="card m-5 " >
+        <div class="card-body">
+            <div class="col text-center">
+                <input type="text" placeholder="검색어를 입력해주세요..." style="flex-grow: 1; width: 40% ; height: auto" >
+                <button class="btn btn-secondary ">검색</button>
+                <a th:href="@{|/board/boardSave|}">
+                    <button class="btn btn-light"}>글쓰기</button>
+                </a>
+            </div>
+        </div>
+    </div>
     <div class="card m-5"  th:each="board : ${boardList}">
 
         <div class="card-header">
             <div class="board-title">
-                <h6  th:text="${board.author.username}">작성자</h6>
+<!--                <h6  th:text="${board.author.username}">작성자</h6>-->
             </div>
             <div>
                 <h4 class="mb-2 text-muted" th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}">게시글 작성일</h4>
@@ -42,6 +55,7 @@
 
 </div>
 <!-- TODO : 오른쪽 Div 부분 기능추가-->
+</div>
 
 <div th:replace="/layout/footer.html :: fragment-footer"></div>
 <div th:replace="/layout/config.html :: fragment-config"></div>

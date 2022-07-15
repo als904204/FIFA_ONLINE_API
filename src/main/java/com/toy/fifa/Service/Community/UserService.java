@@ -13,9 +13,13 @@ public class UserService {
     private final UserRepository userRepository;
 
     // TODO : User Entity -> DTO 로 받고 DTO -> Entity 로 변환 후 db 에 save
-    public User join(User user) {
-        User newUser = userRepository.save(user);
-        return newUser;
+    public User join(String username, String password, String email) {
+        User user = new User();
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setPassword(password);
+        userRepository.save(user);
+        return user;
     }
 
     public User findById(Long id) {

@@ -1,7 +1,7 @@
 package com.toy.fifa.Service.FIFA;
 
-import com.toy.fifa.Entity.DTO.UserApiResponseDto;
-import com.toy.fifa.Entity.DTO.UserInfoResponseDto;
+import com.toy.fifa.DTO.FIFA_DTO.UserApiResponseDto;
+import com.toy.fifa.DTO.FIFA_DTO.UserInfoResponseDto;
 import com.toy.fifa.Entity.FIFA_user_info;
 import com.toy.fifa.Repository.FIFA_api_UserRepository;
 import lombok.RequiredArgsConstructor;

@@ -6,4 +6,12 @@
     width: 65%;
 }
 
+.image-wrapper {
+    width: 100%;
+}
+
+.image-button-logo{
+    max-width: 5%;
+    height: auto;
+}
 

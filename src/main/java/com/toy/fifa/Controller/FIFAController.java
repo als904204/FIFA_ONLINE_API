@@ -1,6 +1,6 @@
 package com.toy.fifa.Controller;
 
-import com.toy.fifa.Entity.DTO.UserInfoResponseDto;
+import com.toy.fifa.DTO.FIFA_DTO.UserInfoResponseDto;
 import com.toy.fifa.Service.FIFA.FIFA_api_UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

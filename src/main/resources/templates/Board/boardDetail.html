@@ -5,9 +5,17 @@
 </head>
 <body>
     <div th:replace="/layout/navbar.html :: fragment-nav"></div>
-    <h1  th:text="${boardDetail.title}">게시글제목</h1>
-    <h1  th:text="${boardDetail.content}">게시글내용</h1>
-    <h1  th:text="|조회수 : ${boardDetail.getCount()}|">게시글조회수</h1>
+
+    <div class="container">
+
+        <h1  th:text="${boardDetail.title}">게시글제목</h1>
+<!--        <h6  th:text="${boardDetail.author.username}">작성자</h6>-->
+        <h1  th:text="${boardDetail.content}">게시글내용</h1>
+        <h1  th:text="|조회수 : ${boardDetail.getCount()}|">게시글조회수</h1>
+        <h4 class="mb-2 text-muted" th:text="${#temporals.format(boardDetail.createDate, 'yyyy-MM-dd HH:mm')}">게시글 작성일</h4>
+
+    </div>
+
 
     <div th:replace="/layout/footer.html :: fragment-footer"></div>
     <div th:replace="/layout/config.html :: fragment-config"></div>

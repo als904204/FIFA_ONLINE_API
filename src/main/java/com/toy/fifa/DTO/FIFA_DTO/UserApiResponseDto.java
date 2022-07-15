@@ -1,4 +1,4 @@
-package com.toy.fifa.Entity.DTO;
+package com.toy.fifa.DTO.FIFA_DTO;
 
 import com.toy.fifa.Entity.FIFA_user_info;
 import lombok.Data;

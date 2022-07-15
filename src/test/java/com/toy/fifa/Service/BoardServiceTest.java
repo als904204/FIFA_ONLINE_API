@@ -44,15 +44,15 @@ class BoardServiceTest {
         User user = new User(1L, "user1ddddd", "pwd", "naver@naver");
         User u1 = userService.join(user);
         User author = userService.findById(1L);
-        b1.setAuthor(author);
+        //b1.setAuthor(author);
 
         Board board = boardRepository.save(b1);
         Long findBoard = boardRepository.findById(board.getId()).orElseThrow().getId();
         assertThat(findBoard).isEqualTo(board.getId());
 
         // 1번 유저가 첫번째로 작성한 게시글 isEqualTo 1번 게시글?
-        Optional<Board> getAuthor = boardRepository.findById(board.getAuthor().getId());
-        assertThat(u1.getId()).isEqualTo(getAuthor.get().getId());
+       // Optional<Board> getAuthor = boardRepository.findById(board.getAuthor().getId());
+       // assertThat(u1.getId()).isEqualTo(getAuthor.get().getId());
     }
 
 

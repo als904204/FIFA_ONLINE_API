@@ -1,8 +1,8 @@
 package com.toy.fifa.Controller.ApiController;
 
 
-import com.toy.fifa.Entity.DTO.UserApiResponseDto;
-import com.toy.fifa.Entity.DTO.UserInfoResponseDto;
+import com.toy.fifa.DTO.FIFA_DTO.UserApiResponseDto;
+import com.toy.fifa.DTO.FIFA_DTO.UserInfoResponseDto;
 import com.toy.fifa.Service.FIFA.FIFA_api_UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-public class UserApiController {
+public class FIFA_UserApiController {
 
     private final FIFA_api_UserService FIFAapiUserService;
 
