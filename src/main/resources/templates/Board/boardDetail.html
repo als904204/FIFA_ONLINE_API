@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <div th:replace="/layout/header.html :: fragment-header"></div>
+</head>
+<body>
+    <div th:replace="/layout/navbar.html :: fragment-nav"></div>
+    <h1  th:text="${boardDetail.title}">게시글제목</h1>
+    <h1  th:text="${boardDetail.content}">게시글내용</h1>
+    <h1  th:text="|조회수 : ${boardDetail.getCount()}|">게시글조회수</h1>
+
+    <div th:replace="/layout/footer.html :: fragment-footer"></div>
+    <div th:replace="/layout/config.html :: fragment-config"></div>
+</body>
+</html>
