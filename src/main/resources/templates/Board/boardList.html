@@ -24,6 +24,7 @@
                 <a th:href="@{|/board/boardSave|}">
                     <button class="btn btn-light"}>글쓰기</button>
                 </a>
+                    <button type="button" class="btn btn-danger" id="btn-delete"}>모든 글 삭제</button>
             </div>
         </div>
     </div>
@@ -59,6 +60,8 @@
 
 <div th:replace="/layout/footer.html :: fragment-footer"></div>
 <div th:replace="/layout/config.html :: fragment-config"></div>
+<script src="/js/boardMain.js"></script>
+
 </body>
 
 </html>

@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+
+// TODO : 나중에 DTO 로 변경 해야 함
 @NoArgsConstructor
 @Setter
 @Getter

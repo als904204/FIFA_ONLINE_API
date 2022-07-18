@@ -17,17 +17,5 @@ class UserServiceTest {
     private UserService userService;
 
 
-    @Test
-    void 유저회원가입() {
-
-        //given
-        User user = new User(1L, "user1", "pwd", "naver@naver");
-
-        //when
-        User u1 = userService.join(user);
-
-        //then
-        Assertions.assertThat(u1.getId()).isEqualTo(1L);
-    }
 
 }
