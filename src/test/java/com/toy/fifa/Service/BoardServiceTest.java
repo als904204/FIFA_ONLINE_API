@@ -5,7 +5,7 @@ import com.toy.fifa.Entity.Reply;
 import com.toy.fifa.Entity.User;
 import com.toy.fifa.Repository.BoardRepository;
 import com.toy.fifa.Repository.ReplyRepository;
-import com.toy.fifa.Service.Community.UserService;
+import com.toy.fifa.Service.Community.CommunityUserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,7 +27,7 @@ class BoardServiceTest {
     private ReplyRepository replyRepository;
 
     @Autowired
-    private UserService userService;
+    private CommunityUserService userService;
 
 
 

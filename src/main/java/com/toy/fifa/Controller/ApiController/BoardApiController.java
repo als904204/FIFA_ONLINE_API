@@ -17,9 +17,9 @@ public class BoardApiController {
 
     private final BoardService boardService;
 
-    @PostMapping("/board/boardSave")
+    @PostMapping("/board/auth/boardSave")
     public String boardSave(@RequestParam String title, @RequestParam String content) {
         boardService.createBoard(title,content);
-        return "redirect:/board/boardList";
+        return "redirect:/board/auth/boardList";
     }
 }
