@@ -7,9 +7,21 @@
 
 <body>
 
-
+<div class="container">
+    <form action="/auth/user/join" method="post">
+       <input id="username" type="text" name="username" placeholder="유저아이디"/></br/>
+       <input id="email" type="email" name="email" placeholder="이메일"/></br/>
+       <input id="password" type="password" name="password" placeholder="비밀번호"/></br/>
+    </form>
+    <!-- 수정  -->
+    <button type="button" id="btn-join" class="btn btn-primary">Join Us</button>
+</div>
 <div th:replace="/layout/footer.html :: fragment-footer"></div>
 <div th:replace="/layout/config.html :: fragment-config"></div>
+<script src="/js/user-join.js"></script>
+
+
+
 </body>
 
 </html>

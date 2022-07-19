@@ -31,29 +31,29 @@ class BoardServiceTest {
 
 
 
-    @Test
-    void 게시글_생성() {
-
-        //WHEN
-        Board b1 = new Board();
-        b1.setTitle("제목ddddddddddddddddd");
-        b1.setContent("내용ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-        b1.setCreateDate(LocalDateTime.now());
-        b1.setCount(50);
-
-        User user = new User(1L, "user1ddddd", "pwd", "naver@naver");
-//        User u1 = userService.join(user);
-        User author = userService.findById(1L);
-        //b1.setAuthor(author);
-
-        Board board = boardRepository.save(b1);
-        Long findBoard = boardRepository.findById(board.getId()).orElseThrow().getId();
-        assertThat(findBoard).isEqualTo(board.getId());
-
-        // 1번 유저가 첫번째로 작성한 게시글 isEqualTo 1번 게시글?
-       // Optional<Board> getAuthor = boardRepository.findById(board.getAuthor().getId());
-       // assertThat(u1.getId()).isEqualTo(getAuthor.get().getId());
-    }
+//    @Test
+//    void 게시글_생성() {
+//
+//        //WHEN
+//        Board b1 = new Board();
+//        b1.setTitle("제목ddddddddddddddddd");
+//        b1.setContent("내용ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+//        b1.setCreateDate(LocalDateTime.now());
+//        b1.setCount(50);
+//
+//        User user = new User(1L, "user1ddddd", "pwd", "naver@naver");
+////        User u1 = userService.join(user);
+//        User author = userService.findById(1L);
+//        //b1.setAuthor(author);
+//
+//        Board board = boardRepository.save(b1);
+//        Long findBoard = boardRepository.findById(board.getId()).orElseThrow().getId();
+//        assertThat(findBoard).isEqualTo(board.getId());
+//
+//        // 1번 유저가 첫번째로 작성한 게시글 isEqualTo 1번 게시글?
+//       // Optional<Board> getAuthor = boardRepository.findById(board.getAuthor().getId());
+//       // assertThat(u1.getId()).isEqualTo(getAuthor.get().getId());
+//    }
 
 
     @Test
