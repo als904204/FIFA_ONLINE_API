@@ -33,7 +33,7 @@ public class BoardService {
     }
 
     // 게시글 작성
-    // TODO : DTO 변경
+    // TODO : DTO 변경 > 작성자값만 가져와야 되는데 유저 모든 값 가져옴
     public void createBoard(String title, String content) {
         Board board = new Board();
         board.setTitle(title);

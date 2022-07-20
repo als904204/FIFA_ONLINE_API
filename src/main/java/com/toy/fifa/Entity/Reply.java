@@ -26,4 +26,6 @@ public class Reply {
     private Board board;
 
 
+
+
 }

@@ -5,7 +5,9 @@ import com.toy.fifa.Entity.Reply;
 import com.toy.fifa.Entity.User;
 import com.toy.fifa.Repository.BoardRepository;
 import com.toy.fifa.Repository.ReplyRepository;
+import com.toy.fifa.Service.Community.BoardService;
 import com.toy.fifa.Service.Community.UserService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +30,9 @@ class BoardServiceTest {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BoardService boardService;
 
 
 
@@ -238,6 +243,16 @@ class BoardServiceTest {
         assertThat(b.getReplyList().get(0).getContent()).isEqualTo(replyList.get(0).getContent());
 
 
+    }
+
+    @Test
+    @DisplayName("페이징처리 테스트 대량 데이터 생성")
+    void garbageTestData() {
+        for (int i = 0; i <= 300; i++) {
+            String title = String.format("테스용 데이터:[%03d]", i);
+            String content = "내용없음";
+            boardService.createBoard(title, content);
+        }
     }
 
 
