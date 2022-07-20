@@ -10,14 +10,11 @@ const reply = {
         let  data = {
             replyContent : $("#reply-content").val(),
         };
-        let  boardID = $("#boardID").val()
-
-        alert(data.replyContent)
-        alert(boardID)
+        const  boardID = $("#boardID").val()
 
         if (data.replyContent === '') {
             alert("빈 내용입니다");
-        }
+        } else{
             $.ajax({
                 type: `POST`,
                 url: `/api/v1/reply/create/${boardID}`,
@@ -25,11 +22,13 @@ const reply = {
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
 
-            }).done(function (boardID) {
+            }).done(function () {
                 window.location.href = `/board/boardDetail/${boardID}`;
             }).fail(function (err) {
                 alert(JSON.stringify(err));
             });
+        }
+
     }
 };
 reply.init();
