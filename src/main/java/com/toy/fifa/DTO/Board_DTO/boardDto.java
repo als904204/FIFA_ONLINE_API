@@ -1,4 +1,4 @@
-package com.toy.fifa.DTO.Community_DTO;
+package com.toy.fifa.DTO.Board_DTO;
 
 
 import com.toy.fifa.Entity.Reply;

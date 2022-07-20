@@ -1,4 +1,5 @@
-package com.toy.fifa.DTO.HttpStatus_DTO;
+package com.toy.fifa.DTO.Board_DTO;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +10,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ResponseDto<T> {
+public class BoardResponseDto<T> {
+
+    /*
+    * return 1 : 성공
+    * */
     int status;
     T data;
 }

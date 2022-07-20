@@ -1,14 +1,12 @@
 package com.toy.fifa.Controller.ApiController;
 
 
-import com.toy.fifa.DTO.Community_DTO.UserDto;
-import com.toy.fifa.DTO.HttpStatus_DTO.ResponseDto;
+import com.toy.fifa.DTO.ResponseUserDto;
 import com.toy.fifa.Entity.User;
-import com.toy.fifa.Service.Community.CommunityUserService;
+import com.toy.fifa.Service.Community.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,13 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 public class CommunityUserApiController {
-    private final CommunityUserService userService;
 
-    @PostMapping("/api/user/join")
-    public ResponseDto<Integer> save(@RequestBody UserDto userDto) {
-        log.info(userDto);
-        log.info("save() 메서드 호출");
-        userService.join(userDto);
-        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    private final UserService userService;
+
+    @PostMapping("/api/v1/user/join")
+    public ResponseUserDto<Integer> userJoin(@RequestBody User user) {
+
+        // 지워야 됨
+        log.info("join() 호출={}", user);
+        userService.join(user);
+        return new ResponseUserDto<>(HttpStatus.OK.value(), 1);
     }
 }
