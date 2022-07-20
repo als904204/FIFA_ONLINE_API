@@ -3,6 +3,7 @@
 <head>
     <div th:replace="/layout/header.html :: fragment-header"></div>
     <link th:href="@{/css/boardDetail.css}" rel="stylesheet" />
+    <div th:replace="/layout/config.html :: fragment-config"></div>
 </head>
 <body>
     <div th:replace="/layout/navbar.html :: fragment-nav"></div>
@@ -28,14 +29,25 @@
         <div class="form-group">
             <div th:utext="${boardDetail.content}">글 내용</div>
         </div>
+
+
+
+
+
+     <form>
+        <div class="form-group">
+            <textarea name="content" id="reply-content" rows="15"></textarea>
+                 <input type="submit" value="댓글등록">
+        </div>
+     </form>
     <hr>
     <br/>
+
 </div>
     <br>
 
 
-
     <div th:replace="/layout/footer.html :: fragment-footer"></div>
-    <div th:replace="/layout/config.html :: fragment-config"></div>
+
 </body>
 </html>
