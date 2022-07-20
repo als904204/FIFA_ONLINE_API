@@ -54,7 +54,15 @@
                 </p>
         </div>
 
+
 </div>
+    <div class="pagination justify-content-center">
+        <th:block  th:each="page : ${#numbers.sequence(startPage, endPage)}" >
+            <a th:if="${page != currentPage}" th:href="@{/board/boardList(page = ${page - 1})}" th:text="${page}" X></a>
+            <strong th:if="${page == currentPage}"th:text="${page}" style="color: red"></strong>
+        </th:block>
+    </div>
+
 <!-- TODO : 오른쪽 Div 부분 기능추가-->
 </div>
 

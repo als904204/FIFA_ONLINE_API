@@ -6,6 +6,8 @@ import com.toy.fifa.Entity.User;
 import com.toy.fifa.Repository.BoardRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,8 +21,8 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     // 모든 게시글 조회
-    public List<Board> getBoardList() {
-        List<Board> boardList = boardRepository.findAll();
+    public Page<Board> getBoardList(Pageable pageable) {
+        Page<Board> boardList = boardRepository.findAll(pageable);
         return boardList;
     }
 
