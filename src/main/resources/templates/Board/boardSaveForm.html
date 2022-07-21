@@ -18,17 +18,17 @@
 
 <body>
 <div class="container" >
-    <form th:action="@{/board/boardSave}" method="post">
+    <form>
         <div class="form-group">
-            <input name="title" type="text" class="form-control" placeholder="제목을 입력해주세요..." id="title">
+            <input id="form-title" name="title" type="text" class="form-control" placeholder="제목을 입력해주세요...">
         </div>
         <br />
         <div class="form-group">
-            <textarea name="content" class="form-control summernote" rows="5" id="content">
+            <textarea id="form-content" name="content" class="form-control summernote" rows="5">
             </textarea>
         </div>
         <br>
-            <button  type="submit"  class="btn btn-primary float-right btn-lg" >등록</button>
+            <button id="btn-save-form" class="btn btn-primary float-right btn-lg" >등록</button>
     </form>
 </div>
 
@@ -44,7 +44,7 @@
 </script>
 </body>
 
-<!--<script src="/js/boardSaveForm.js"></script>-->
+<script src="/js/boardSaveForm.js"></script>
 <footer th:replace="/layout/footer.html :: fragment-footer"></footer>
 </body>
 </html>
