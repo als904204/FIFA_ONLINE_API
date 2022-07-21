@@ -25,6 +25,9 @@ public class Reply {
     @ManyToOne
     private Board board;
 
+    // 댓글 작성자
+//    @ManyToOne
+//    private User author;
 
 
 

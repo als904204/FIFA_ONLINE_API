@@ -44,6 +44,12 @@ public class BoardService {
         boardRepository.save(board);
     }
 
+    public Board getBoard(Long id) {
+        Board board = boardRepository.findById(id).orElseThrow(() -> {
+            throw new DataNotFoundException("게시글을 찾을 수 없습니다");
+        });
+        return board;
+    }
 
     // 게시글 삭제
     public void deleteAllBoards() {

@@ -31,10 +31,16 @@
             <div th:utext="${boardDetail.content}">글 내용</div>
         </div>
 
+    <!-- 댓글 목록 Start-->
+    <h5 th:text="|${#lists.size(boardDetail.replyList)}개의 댓글이 있습니다|"></h5>
+    <div>
+        <ul>
+            <li th:each="reply : ${boardDetail.replyList}" th:text="${reply.content}"></li>
+        </ul>
+    </div>
+    <!-- 댓글 목록 END-->
 
-
-
-
+    <!-- 댓글 등록 Start-->
      <form>
          <input type="hidden" id="boardID" th:value="${boardDetail.getId()}" >
          <div class="form-group">
@@ -42,7 +48,7 @@
         </div>
          <button id="btn-reply" class="btn btn-primary">댓글 등록</button>
      </form>
-
+    <!-- 댓글 등록 END-->
     <hr>
     <br/>
 

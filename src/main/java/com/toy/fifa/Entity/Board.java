@@ -32,12 +32,12 @@ public class Board {
 
     private int count;
 
-    @OneToMany(mappedBy = "board",cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "board",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Reply> replyList;
 
 
-//
-//    @ManyToOne(fetch = FetchType.EAGER) // Board 테이블 조회할 때 유저 ID 값을 무조건 가져옴
+
+//    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE) // Board 테이블 조회할 때 유저 ID 값을 무조건 가져옴
 //    @JoinColumn(name = "userId")
 //    private User author;
 
