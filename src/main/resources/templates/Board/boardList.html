@@ -5,8 +5,6 @@
     <link th:href="@{/css/boardList.css}" rel="stylesheet">
 </head>
 
-
-
 <body>
 <div th:replace="/layout/navbar.html :: fragment-nav"></div>
 
@@ -14,8 +12,11 @@
     <h1 style="text-align: center; font-size: 50px;">
         로고2
     </h1>
+<!-- 로고 END -->
+
 
 <div class="container">
+<!-- 글쓰기 ,검색메뉴 Start -->
     <div class="card m-5 " >
         <div class="card-body">
             <div class="col text-center">
@@ -28,17 +29,18 @@
             </div>
         </div>
     </div>
-    <div class="card m-5"  th:each="board : ${boardList}">
+<!-- 글쓰기 ,검색메뉴 END -->
 
+<!-- 글 목록Start -->
+    <div class="card m-5"  th:each="board : ${boardList}">
         <div class="card-header">
             <div class="board-title">
-<!--                <h6  th:text="${board.author.username}">작성자</h6>-->
+                <!-- 제목 -->
             </div>
             <div>
                 <h4 class="mb-2 text-muted" th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}">게시글 작성일</h4>
             </div>
         </div>
-
         <div class="card-body">
             <strong>
                 <a th:href="@{|/board/boardDetail/${board.id}|}">
@@ -46,12 +48,16 @@
                         게시글 제목
                     </h2>
                 </a>
-
             </strong>
             <br />
                 <p class="card-text" th:text="${board.getContent()}">
                     게시글 내용
                 </p>
+            <!-- 댓글 Start-->
+            <span class="text-danger small ms-1" th:if="${#lists.size(board.replyList) > 0}"
+                  th:text="|${#lists.size(board.replyList)}개의 댓글이 있습니다|">>
+            </span>
+            <!-- 댓글 END-->
         </div>
 
 
