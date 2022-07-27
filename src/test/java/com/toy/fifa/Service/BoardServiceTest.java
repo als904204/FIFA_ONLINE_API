@@ -245,15 +245,6 @@ class BoardServiceTest {
 
     }
 
-    @Test
-    @DisplayName("페이징처리 테스트 대량 데이터 생성")
-    void garbageTestData() {
-        for (int i = 0; i <= 300; i++) {
-            String title = String.format("테스용 데이터:[%03d]", i);
-            String content = "내용없음";
-            boardService.createBoard(title, content);
-        }
-    }
 
 
 

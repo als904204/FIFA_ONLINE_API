@@ -42,12 +42,12 @@ public class CommunityUserApiController {
         responseMessage.setData(userJoinForm);
 
         // 패스워드가 일치하지 않으면 안됨
-        /**
+
              if (!userJoinForm.getPassword().equals(userJoinForm.getConfirmPassword())) {
              bindingResult.rejectValue("confirmPassword", "PWD and confirmPWD are different Error",
              "2개의 패스워드가 일치하지 않습니다.");
              }
-         * **/
+
 
 
         // 필드값 오류 발생 시 (아이디가 6자리 이하거나 패스워드8자리 이하거나 패스워드가 일치하지 않을 시)
