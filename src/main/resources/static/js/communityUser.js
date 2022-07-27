@@ -10,9 +10,12 @@ let userInfo = {
             username : $("#username").val(),
             email : $("#email").val(),
             password : $("#password").val(),
+            confirmPassword : $("#confirmPassword").val()
         };
 
         console.log(data);
+
+
 
         $.ajax({
             type: "POST",

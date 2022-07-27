@@ -1,18 +1,14 @@
 package com.toy.fifa.Service.Community;
 
-import com.toy.fifa.Controller.ExceptionConfig.DataNotFoundException;
+import com.toy.fifa.Config.ExceptionConfig.DataNotFoundException;
 import com.toy.fifa.Entity.Board;
-import com.toy.fifa.Entity.User;
 import com.toy.fifa.Repository.BoardRepository;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service

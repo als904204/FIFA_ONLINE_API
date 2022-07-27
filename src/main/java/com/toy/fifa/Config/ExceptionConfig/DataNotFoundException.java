@@ -1,4 +1,4 @@
-package com.toy.fifa.Controller.ExceptionConfig;
+package com.toy.fifa.Config.ExceptionConfig;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

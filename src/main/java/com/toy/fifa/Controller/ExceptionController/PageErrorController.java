@@ -1,4 +1,4 @@
-package com.toy.fifa.Controller.ExceptionConfig;
+package com.toy.fifa.Controller.ExceptionController;
 
 
 import lombok.extern.log4j.Log4j2;
