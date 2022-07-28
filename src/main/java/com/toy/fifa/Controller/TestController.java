@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TestController {
 
-    @GetMapping("/test")
+    @GetMapping("/test/join")
     public String Test() {
-        return "test";
+        return "/test/test";
     }
 }
