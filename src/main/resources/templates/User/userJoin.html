@@ -13,9 +13,11 @@
                 <div style="max-width:420px;">
                     <form class="bg-white border-bottom-0 border py-4 px-5">
                         <div class="text-center mb-3">
-                            <i class="fab fa-bootstrap fa-5x text-secondary mb-2"></i>
-                            <p class="text-muted fw-bold">
-                                Sign up to see your FIFA-ONLINE4 information.
+                            <i  class="fab fa-bootstrap fa-5x text-secondary mb-1">
+                                <a th:href="@{/}"><img th:src="@{/img/FIFA_LOGO.png}" class="rounded mx-auto d-block"/></a>
+                            </i>
+                            <p class="text-muted fw-bold mt-2">
+                                피파온라인4 이적시장,거래내역,전적검색을 보려면 가입하세요.
                             </p>
                         </div>
                         <p class="my-3 text-center or">
@@ -34,21 +36,10 @@
                         <div class="form-floating mb-3">
                             <input class="form-control" id="confirmPassword" placeholder="password confirm" required="" type="password" /><label>password confirm</label>
                         </div>
-<!--                        <div class="mb-3">-->
-<!--                            <button id="btn-join" class="btn btn-primary fw-bold w-100 bg-gradient">Sign Up</button>-->
-<!--                        </div>-->
-<!--                        <div class="mb-2 form-group row ">-->
-<!--                            <div class="col-6 ">-->
-<!--                                <a href="#"><img th:src="@{/img/kakao_button.png}" style="max-width: 100%; height: auto;" class="rounded mx-auto d-block" ></a>-->
-<!--                            </div>-->
-<!--                            <div class="col-6">-->
-<!--                                <a  href="#"><img th:src="@{/img/google_login.png}" style="max-width: 100%; height: auto; border: black" class="rounded mx-auto d-block" ></a>-->
-<!--                            </div>-->
-<!--                        </div>-->
                     </form>
                     <div class="bg-white border border-top-0 py-4 px-5" >
                         <div class="mb-3">
-                            <button id="btn-join" class="btn btn-primary fw-bold w-100 bg-gradient">Sign Up</button>
+                            <button id="btn-join" class="btn btn-primary fw-bold w-100 bg-gradient">회원가입</button>
                         </div>
                         <div class="mb-2 form-group row ">
                             <div class="col-6 ">
@@ -61,7 +52,7 @@
                     </div>
                     <div class="bg-white py-4 px-5 text-center border mt-4 mb-2">
                         <p class="m-0">
-                            Have an account? <a href="#">Log In</a>
+                            이미 회원이신가요? &nbsp<a href="/user/login" style="color: #5383E8">로그인</a>
                         </p>
                     </div>
                     <div class="small text-center ">
