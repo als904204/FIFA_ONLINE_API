@@ -41,12 +41,20 @@ let userInfo = {
             contentType: "application/json; charset=utf-8",
             dataType: "json"
         }).done(function (res) {
-            console.log(res);
-            alert("성공");
+            alert("회원가입이 완료되었습니다");
             location.href = "/";
         }).fail(function (error) {
-            alert("실패");
-            console.log(JSON.stringify(error));
+            if (error.responseText === "중복된 아이디입니다") {
+                alert("중복된 아이디입니다");
+                return false;
+            }
+            if (error.responseText === "중복된 이메일입니다") {
+                alert("중복된 이메일입니다");
+                return false;
+            }
+            else
+                console.log(JSON.stringify(error));
+                alert("JSON.stringify_ERROR")
         });
     }
 };

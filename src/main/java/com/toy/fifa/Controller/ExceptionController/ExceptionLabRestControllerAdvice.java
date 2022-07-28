@@ -22,7 +22,8 @@ public class ExceptionLabRestControllerAdvice {
         return e.getMessage();
     }
 
-    // 중복 이메일 예외외    @ExceptionHandler(DuplicatedEmailException.class)
+    // 중복 이메일 예외외
+    @ExceptionHandler(DuplicatedEmailException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public String duplicatedEmailExceptionHandler(DuplicatedEmailException e) {
         log.error("DuplicatedEmailException={}", e.getMessage());

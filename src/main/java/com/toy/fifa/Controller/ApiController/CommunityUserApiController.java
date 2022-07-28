@@ -41,20 +41,22 @@ public class CommunityUserApiController {
         httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
         responseMessage.setData(userJoinForm);
 
-        // 패스워드가 일치하지 않으면 안됨
-
-             if (!userJoinForm.getPassword().equals(userJoinForm.getConfirmPassword())) {
-             bindingResult.rejectValue("confirmPassword", "PWD and confirmPWD are different Error",
-             "2개의 패스워드가 일치하지 않습니다.");
-             }
+         // 패스워드&패스워드 확인이 일치하지 않으면
+         if (!userJoinForm.getPassword().equals(userJoinForm.getConfirmPassword())) {
+         bindingResult.rejectValue("confirmPassword", "PWD and confirmPWD are different Error",
+         "2개의 패스워드가 일치하지 않습니다.");
+         responseMessage.setStatus(HttpStatus.BAD_REQUEST.value());
+         responseMessage.setMessage("BAD_REQUEST_ERROR_PASSWORD_NOT_CORRECT");
+         return new ResponseEntity<>(responseMessage, httpHeaders, HttpStatus.BAD_REQUEST);
+         }
 
 
 
         // 필드값 오류 발생 시 (아이디가 6자리 이하거나 패스워드8자리 이하거나 패스워드가 일치하지 않을 시)
         if (bindingResult.hasErrors()) {
             responseMessage.setStatus(HttpStatus.BAD_REQUEST.value());
-            responseMessage.setMessage("BAD_REQUEST_ERROR");
-            throw new IllegalArgumentException("잘못된 요청입니다");
+            responseMessage.setMessage("BAD_REQUEST_ERROR_FILED_VALUE");
+            return new ResponseEntity<>(responseMessage, httpHeaders, HttpStatus.BAD_REQUEST);
         }
 
 
