@@ -72,6 +72,6 @@ public class CommunityUserApiController {
     private ResponseEntity<ResponseMessage> getResponseMessageResponseEntity(int httpsStatus, String HttpMessage, HttpStatus httpResponseStatus ) {
         responseMessage.setStatus(httpsStatus);
         responseMessage.setMessage(HttpMessage);
-        return new ResponseEntity<>(responseMessage, httpHeaders, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(responseMessage, httpHeaders, httpResponseStatus);
     }
 }
