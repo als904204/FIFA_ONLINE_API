@@ -45,25 +45,33 @@ public class CommunityUserApiController {
          if (!userJoinForm.getPassword().equals(userJoinForm.getConfirmPassword())) {
          bindingResult.rejectValue("confirmPassword", "PWD and confirmPWD are different Error",
          "2개의 패스워드가 일치하지 않습니다.");
-         responseMessage.setStatus(HttpStatus.BAD_REQUEST.value());
-         responseMessage.setMessage("BAD_REQUEST_ERROR_PASSWORD_NOT_CORRECT");
-         return new ResponseEntity<>(responseMessage, httpHeaders, HttpStatus.BAD_REQUEST);
+         return getResponseMessageResponseEntity(HttpStatus.BAD_REQUEST.value(), "BAD_REQUEST_ERROR_PASSWORD_NOT_CORRECT",HttpStatus.BAD_REQUEST);
          }
 
 
 
-        // 필드값 오류 발생 시 (아이디가 6자리 이하거나 패스워드8자리 이하거나 패스워드가 일치하지 않을 시)
+        // 필드값 오류 발생 시 (아이디가 2자리 이하거나 패스워드8자리 이하거나 패스워드가 일치하지 않을 시)
         if (bindingResult.hasErrors()) {
-            responseMessage.setStatus(HttpStatus.BAD_REQUEST.value());
-            responseMessage.setMessage("BAD_REQUEST_ERROR_FILED_VALUE");
-            return new ResponseEntity<>(responseMessage, httpHeaders, HttpStatus.BAD_REQUEST);
+            bindingResult.rejectValue("nickname", "Nickname or password Error",
+                    "닉네임 또는 패스워드 규약 에러(닉네임 : 2자리 이상 , 패스워드 8자리 이상)");
+            return getResponseMessageResponseEntity(HttpStatus.BAD_REQUEST.value(), "BAD_REQUEST_ERROR_FILED_VALUE",HttpStatus.BAD_REQUEST);
         }
 
+        userService.join(userJoinForm.getNickname(),userJoinForm.getEmail(),userJoinForm.getPassword());
+        return getResponseMessageResponseEntity(HttpStatus.CREATED.value(), "Successful join ", HttpStatus.OK);
 
+    }
 
-        responseMessage.setStatus(HttpStatus.CREATED.value());
-        responseMessage.setMessage("Successful join ");
-        userService.join(userJoinForm.getUsername(),userJoinForm.getEmail(),userJoinForm.getPassword());
-        return new ResponseEntity<>(responseMessage, httpHeaders, HttpStatus.OK);
+    /**
+     *
+     * @param httpsStatus 응답 status
+     * @param HttpMessage 응답 message
+     * @param httpResponseStatus 서버한테 전송
+     * @return  new ResponseEntity<>
+     */
+    private ResponseEntity<ResponseMessage> getResponseMessageResponseEntity(int httpsStatus, String HttpMessage, HttpStatus httpResponseStatus ) {
+        responseMessage.setStatus(httpsStatus);
+        responseMessage.setMessage(HttpMessage);
+        return new ResponseEntity<>(responseMessage, httpHeaders, HttpStatus.BAD_REQUEST);
     }
 }

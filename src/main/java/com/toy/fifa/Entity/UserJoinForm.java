@@ -12,9 +12,9 @@ import javax.validation.constraints.Size;
 @Setter
 public class UserJoinForm {
 
-    @Size(min = 6, max = 25)
-    @NotEmpty(message = "아이디를 입력해주세요")
-    private String username;
+    @Size(min = 2, max = 25)
+    @NotEmpty(message = "닉네임을 입력해주세요")
+    private String nickname;
 
     @Size(min = 8)
     @NotEmpty(message = "비밀번호를 입력해주세요.")

@@ -21,21 +21,21 @@ public class UserService {
 
     // TODO : User Entity -> DTO 로 받고 DTO -> Entity 로 변환 후 db 에 save
     @Transactional
-    public User join(String username, String email, String password) {
-        duplicatedUserByUsername(username);
+    public User join(String nickname, String email, String password) {
+        duplicatedUserByNickname(nickname);
         duplicatedUserByEmail(email);
         User joinUser = new User();
         String encodedPassword = passwordEncoder.encode(password);
-        joinUser.setUsername(username);
+        joinUser.setNickname(nickname);
         joinUser.setEmail(email);
         joinUser.setPassword(encodedPassword);
         userRepository.save(joinUser);
         return joinUser;
     }
 
-    // 중복 이름
-    private void duplicatedUserByUsername(String name) {
-        if (findByUsername(name).isPresent()) {
+    // 중복 닉네임
+    private void duplicatedUserByNickname(String nickname) {
+        if (findByNickname(nickname).isPresent()) {
             throw new DuplicatedUserException();
         }
     }
@@ -55,8 +55,8 @@ public class UserService {
         return findUser;
     }
 
-    public Optional<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public Optional<User> findByNickname(String nickname) {
+        return userRepository.findByNickname(nickname);
     }
 
     public Optional<User> findByEmail(String email) {

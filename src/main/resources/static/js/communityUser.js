@@ -7,7 +7,7 @@ let userInfo = {
 
     userJoin:function () {
         let data = {
-            username : $("#username").val(),
+            nickname : $("#nickname").val(),
             email : $("#email").val(),
             password : $("#password").val(),
             confirmPassword : $("#confirmPassword").val()
@@ -15,10 +15,15 @@ let userInfo = {
 
         console.log(data);
 
-        const idCheck = /^[a-z0-9]+$/;
-        if (!idCheck.test(data.username) || data.username.length < 6) {
-            alert('아이디는 영소문자,숫자로 구성된 6글자 이상으로 조합하시오.');
-            $("username").focus();
+        const idCheck = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]+$/;
+        if (!idCheck.test(data.nickname)) {
+            alert('닉네임은 한글 및 영어만 입력 가능합니다.');
+            $("nickname").focus();
+            return false;
+        }
+        if(data.nickname.length < 2){
+            alert('닉네임은 2글자 또는 2글자 이상이어야 합니다.');
+            $("nickname").focus();
             return false;
         }
 
@@ -44,8 +49,8 @@ let userInfo = {
             alert("회원가입이 완료되었습니다");
             location.href = "/";
         }).fail(function (error) {
-            if (error.responseText === "중복된 아이디입니다") {
-                alert("중복된 아이디입니다");
+            if (error.responseText === "중복된 닉네임입니다") {
+                alert("중복된 닉네임입니다");
                 return false;
             }
             if (error.responseText === "중복된 이메일입니다") {

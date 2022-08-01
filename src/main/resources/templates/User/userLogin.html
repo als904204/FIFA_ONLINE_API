@@ -12,6 +12,11 @@
             <div class="row d-flex align-items-center justify-content-center">
                 <div style="max-width:420px;">
                     <form class="bg-white border-bottom-0 border py-4 px-5">
+                        <div th:if="${param.error}">
+                            <div class="alert alert-danger">
+                                사용자ID 또는 비밀번호를 확인해 주세요.
+                            </div>
+                        </div>
                         <div class="text-center mb-3">
                             <i  class="fab fa-bootstrap fa-5x text-secondary">
                                 <a th:href="@{/}"><img th:src="@{/img/FIFA_LOGO.png}" class="rounded mx-auto d-block py-3"/></a>
