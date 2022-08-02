@@ -4,6 +4,7 @@ package com.toy.fifa.Service.Community;
 import com.toy.fifa.Config.ExceptionConfig.DuplicatedUsernameException;
 import com.toy.fifa.Config.ExceptionConfig.DuplicatedUserException;
 import com.toy.fifa.Entity.User;
+import com.toy.fifa.Entity.UserRole;
 import com.toy.fifa.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,6 +26,7 @@ public class UserService {
         duplicatedUserByNickname(nickname);
         duplicatedUserByUsername(username);
         User joinUser = new User();
+        joinUser.setUserRole(UserRole.USER);
         String encodedPassword = passwordEncoder.encode(password);
         joinUser.setNickname(nickname);
         joinUser.setUsername(username);
