@@ -46,9 +46,9 @@ public class UserService {
 
     // 중복 메일
     private void duplicatedUserByUsername(String username) {
-        if (findByUsername(username).isPresent()) {
+        userRepository.findByUsername(username).ifPresent(user -> {
             throw new DuplicatedUsernameException();
-        }
+        });
     }
 
 
@@ -60,15 +60,19 @@ public class UserService {
     }
 
     public Optional<User> findByNickname(String nickname) {
-        User user = userRepository.findByNickname(nickname).orElseThrow(() -> {
+        Optional<User> user = userRepository.findByNickname(nickname);
+        if (user.isEmpty()) {
             throw new DataNotFoundException("해당 닉네임 유저를 찾을 수 없습니다");
-        });
-        return userRepository.findByNickname(nickname);
+        }
+        return user;
     }
 
-    public Optional<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public User findByUsername(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent()) {
+            return user.get();
+        }else {
+            throw new DataNotFoundException("해당 username 유저를 찾을 수 없습니다");
+        }
     }
-
-
 }

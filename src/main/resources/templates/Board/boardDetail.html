@@ -17,7 +17,9 @@
     <div>
         <div class="side">
 <!--            (아이콘)(닉네임:<span th:text="${boardDetail.user.getUsername()}"/>)-->
-            작성자 닉네임
+            <div class="board-title ">
+                <td><span th:if="${boardDetail.author != null}" th:text="${boardDetail.author.nickname}"></span></td>
+            </div>
         </div>
         <div class="side fr">
             <span id="id" style="display: none" th:text="${boardDetail.getId()}"></span>

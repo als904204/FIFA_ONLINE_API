@@ -33,12 +33,14 @@ public class BoardService {
 
     // 게시글 작성
     // TODO : DTO 변경 > 작성자값만 가져와야 되는데 유저 모든 값 가져옴
-    public void createBoard(Board boardDTO) {
+    public Board createBoard(Board boardDTO, User author) {
         Board board = new Board();
         board.setTitle(boardDTO.getTitle());
         board.setContent(boardDTO.getContent());
         board.setCreateDate(LocalDateTime.now());
+        board.setAuthor(author);
         boardRepository.save(board);
+        return board;
     }
 
     public Board getBoard(Long id) {

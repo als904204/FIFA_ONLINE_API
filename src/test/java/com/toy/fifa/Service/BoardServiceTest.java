@@ -60,6 +60,25 @@ class BoardServiceTest {
        // assertThat(u1.getId()).isEqualTo(getAuthor.get().getId());
     }
 
+    @Test
+    void 게시글_생성_작성자() {
+
+        //given
+        User user = new User();
+        userService.join("user1","user@user.com","password");
+        Board board = new Board();
+        board.setAuthor(user);
+        board.setTitle("테스트 제목");
+        board.setContent("테스트 내용");
+        board.setCreateDate(LocalDateTime.now());
+
+        //when
+        boardService.createBoard(board,user);
+
+        //then
+
+    }
+
 
     @Test
     @Transactional

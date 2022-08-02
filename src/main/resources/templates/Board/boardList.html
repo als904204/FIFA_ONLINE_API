@@ -35,13 +35,14 @@
 <!-- 글 목록Start -->
     <div class="card m-5"  th:each="board : ${boardList}">
         <div class="card-header">
-            <div class="board-title">
-                <!-- 제목 -->
+            <div class="board-title ">
+                <td><span th:if="${board.author != null}" th:text="${board.author.nickname}"></span></td>
             </div>
             <div>
                 <h4 class="mb-2 text-muted" th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}">게시글 작성일</h4>
             </div>
         </div>
+
         <div class="card-body">
             <strong>
                 <a th:href="@{|/board/boardDetail/${board.id}|}">
