@@ -5,7 +5,6 @@ import com.toy.fifa.Entity.Board;
 import com.toy.fifa.Entity.Reply;
 import com.toy.fifa.Service.Community.BoardService;
 import com.toy.fifa.Service.Community.ReplyService;
-import com.toy.fifa.Service.Community.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpHeaders;
@@ -31,21 +30,25 @@ public class ReplyApiController {
     private final HttpHeaders  httpHeaders;
 
     @PostMapping("/api/v1/reply/create/{id}")
-    public ResponseEntity<ResponseMessage> replyCrate(@PathVariable Long id, @RequestBody Reply reply) {
+    public ResponseEntity<ResponseMessage> createReply(@PathVariable Long id, @RequestBody Reply reply) {
         log.info("댓글메서드");
         log.info("해당 댓글 게시글 번호  = {}",id);
         log.info("해당 댓글 내용={}",reply.getContent());
 
         Board board = boardService.getBoard(id);
         replyService.createReply(board, reply);
-
         httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-
-        responseMessage.setStatus(HttpStatus.OK.value());
-        responseMessage.setMessage("성공 코드");
         responseMessage.setData(reply);
 
-        return new ResponseEntity<>(responseMessage, httpHeaders, HttpStatus.OK);
+
+        return  getResponseMessageResponseEntity(HttpStatus.OK.value(),"성공적로 댓글이 작성되었습니다",HttpStatus.OK);
+    }
+
+    // TODO : 메서드 공통
+    private ResponseEntity<ResponseMessage> getResponseMessageResponseEntity(int httpsStatus, String HttpMessage, HttpStatus httpResponseStatus ) {
+        responseMessage.setStatus(httpsStatus);
+        responseMessage.setMessage(HttpMessage);
+        return new ResponseEntity<>(responseMessage, httpHeaders, httpResponseStatus);
     }
 
 }

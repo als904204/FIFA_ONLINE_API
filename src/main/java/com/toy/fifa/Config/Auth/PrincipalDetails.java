@@ -1,8 +1,6 @@
 package com.toy.fifa.Config.Auth;
 
 import com.toy.fifa.Entity.User;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -32,7 +30,7 @@ public class PrincipalDetails implements UserDetails {
         collect.add(new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                return "ROLE_" + user.getUserRole(); // ROLE_USER , ROLE_ADMIN
+                return "ROLE_" + user.getRoleType(); // ROLE_USER , ROLE_ADMIN
             }
         });
         return collect;

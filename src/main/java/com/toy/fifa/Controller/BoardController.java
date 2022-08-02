@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Log4j2
@@ -23,7 +24,7 @@ public class BoardController {
     private final BoardService boardService;
 
     @RequestMapping("/boardList")
-    public String boardList(Model model, @PageableDefault(page = 0, size = 5,sort = "id",direction = Sort.Direction.DESC) Pageable pageable) {
+    public String boardList(Model model, @PageableDefault(page = 0, size = 5,sort = "id",direction = Sort.Direction.DESC) Pageable pageable, Principal principal) {
         Page<Board> boardList = boardService.getBoardList(pageable);
 
         int currentPage = boardList.getPageable().getPageNumber() + 1; // 현재 페이지

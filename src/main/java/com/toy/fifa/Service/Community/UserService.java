@@ -1,10 +1,12 @@
 package com.toy.fifa.Service.Community;
 
 
+import com.toy.fifa.Config.ExceptionConfig.DataNotFoundException;
 import com.toy.fifa.Config.ExceptionConfig.DuplicatedUsernameException;
 import com.toy.fifa.Config.ExceptionConfig.DuplicatedUserException;
+import com.toy.fifa.Config.ExceptionConfig.NicknameNotFound;
 import com.toy.fifa.Entity.User;
-import com.toy.fifa.Entity.UserRole;
+import com.toy.fifa.Entity.RoleType;
 import com.toy.fifa.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,7 +28,7 @@ public class UserService {
         duplicatedUserByNickname(nickname);
         duplicatedUserByUsername(username);
         User joinUser = new User();
-        joinUser.setUserRole(UserRole.USER);
+        joinUser.setRoleType(RoleType.USER);
         String encodedPassword = passwordEncoder.encode(password);
         joinUser.setNickname(nickname);
         joinUser.setUsername(username);
@@ -37,9 +39,9 @@ public class UserService {
 
     // 중복 닉네임
     private void duplicatedUserByNickname(String nickname) {
-        if (findByNickname(nickname).isPresent()) {
+        userRepository.findByNickname(nickname).ifPresent(user -> {
             throw new DuplicatedUserException();
-        }
+        });
     }
 
     // 중복 메일
@@ -51,13 +53,16 @@ public class UserService {
 
 
     public User findById(Long id) {
-        User findUser = userRepository.findById(id).orElseThrow(() -> {
-            throw new IllegalArgumentException("해당 유저를 찾을 수 없습니다");
+        User user = userRepository.findById(id).orElseThrow(() -> {
+            throw new IllegalArgumentException("해당 유저 ID 를 찾을 수 없습니다");
         });
-        return findUser;
+        return user;
     }
 
     public Optional<User> findByNickname(String nickname) {
+        User user = userRepository.findByNickname(nickname).orElseThrow(() -> {
+            throw new DataNotFoundException("해당 닉네임 유저를 찾을 수 없습니다");
+        });
         return userRepository.findByNickname(nickname);
     }
 

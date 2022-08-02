@@ -3,6 +3,6 @@ package com.toy.fifa.Entity;
 import lombok.Getter;
 
 @Getter
-public enum UserRole {
+public enum RoleType {
     USER,ADMIN
 }

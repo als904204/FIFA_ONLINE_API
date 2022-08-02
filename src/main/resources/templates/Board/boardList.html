@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <div th:replace="/layout/header.html :: fragment-header"></div>
     <link th:href="@{/css/boardList.css}" rel="stylesheet">
@@ -22,10 +22,11 @@
             <div class="col text-center">
                 <input type="text" placeholder="검색어를 입력해주세요..." style="flex-grow: 1; width: 40% ; height: auto" >
                 <button class="btn btn-secondary ">검색</button>
-                <a th:href="@{|/board/boardSave|}">
+                <a th:href="@{|/board/boardSave|}"
+                   sec:authorize="isAuthenticated()">
                     <button class="btn btn-light"}>글쓰기</button>
                 </a>
-                    <button type="button" class="btn btn-danger" id="btn-delete"}>모든 글 삭제</button>
+                    <button type="button" class="btn btn-danger" id="btn-delete" sec:authorize="hasRole('ROLE_ADMIN')">모든 글 삭제</button>
             </div>
         </div>
     </div>

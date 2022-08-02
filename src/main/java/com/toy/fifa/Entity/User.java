@@ -30,14 +30,14 @@ public class User {
     private String username;
 
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    private RoleType roleType;
 
-    public User(Long id, String nickname, String password, String username, UserRole userRole) {
+    public User(Long id, String nickname, String password, String username, RoleType roleType) {
         this.id = id;
         this.nickname = nickname;
         this.password = password;
         this.username = username;
-        this.userRole = userRole;
+        this.roleType = roleType;
     }
 
 

@@ -28,14 +28,15 @@ public class BoardApiController {
     @PostMapping("/api/v1/board/create")
     public ResponseEntity<ResponseMessage> boardSave(@RequestBody Board board) {
         boardService.createBoard(board);
-
-
         httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-
-        responseMessage.setStatus(HttpStatus.OK.value());
-        responseMessage.setMessage("성공 코드");
         responseMessage.setData(board);
+        return getResponseMessageResponseEntity(HttpStatus.OK.value(), "게시글이 성공적으로 작성되었습니다", HttpStatus.OK);
+    }
 
-        return new ResponseEntity<>(responseMessage, httpHeaders, HttpStatus.OK);
+    // TODO : 메서드 공통
+    private ResponseEntity<ResponseMessage> getResponseMessageResponseEntity(int httpsStatus, String HttpMessage, HttpStatus httpResponseStatus ) {
+        responseMessage.setStatus(httpsStatus);
+        responseMessage.setMessage(HttpMessage);
+        return new ResponseEntity<>(responseMessage, httpHeaders, httpResponseStatus);
     }
 }

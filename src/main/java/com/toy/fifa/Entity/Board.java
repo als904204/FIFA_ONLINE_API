@@ -37,8 +37,8 @@ public class Board {
 
 
 
-//    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE) // Board 테이블 조회할 때 유저 ID 값을 무조건 가져옴
-//    @JoinColumn(name = "userId")
-//    private User author;
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE) // Board 테이블 조회할 때 유저 ID 값을 무조건 가져옴
+    @JoinColumn(name = "userId")
+    private User author;
 
 }

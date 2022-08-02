@@ -60,7 +60,7 @@ let userInfo = {
             }
             else
                 console.log(JSON.stringify(error));
-                alert("JSON.stringify_ERROR")
+                alert(error)
         });
     }
 };

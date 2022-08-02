@@ -1,7 +1,7 @@
 package com.toy.fifa.Controller.ApiController;
 
 
-import com.toy.fifa.Config.ExceptionConfig.DuplicatedUserException;
+
 import com.toy.fifa.DTO.ResponseMessage;
 import com.toy.fifa.Entity.UserJoinForm;
 import com.toy.fifa.Service.Community.UserService;
@@ -23,7 +23,7 @@ import java.nio.charset.Charset;
 @Log4j2
 @RequiredArgsConstructor
 @RestController
-public class CommunityUserApiController {
+public class CommunityUserApiController{
 
     private final UserService userService;
     private final ResponseMessage responseMessage;
@@ -62,6 +62,7 @@ public class CommunityUserApiController {
 
     }
 
+    // TODO : 메서드 공통
     /**
      *
      * @param httpsStatus 응답 status
