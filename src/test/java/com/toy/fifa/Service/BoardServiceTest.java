@@ -46,7 +46,7 @@ class BoardServiceTest {
         b1.setCreateDate(LocalDateTime.now());
         b1.setCount(50);
 
-        User user = new User(1L, "user1ddddd", "pwd", "naver@naver");
+
 //        User u1 = userService.join(user);
         User author = userService.findById(1L);
         //b1.setAuthor(author);

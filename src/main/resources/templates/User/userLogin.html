@@ -10,14 +10,14 @@
     <section class="py-4">
         <div class="container">
             <div class="row d-flex align-items-center justify-content-center">
-                <div style="max-width:420px;">
-                    <form class="bg-white border-bottom-0 border py-4 px-5">
+                <div style="max-width:420px;" >
+                    <form action="/user/loginProc" method="post" class="bg-white border-bottom-0 border py-4 px-5">
                         <div th:if="${param.error}">
                             <div class="alert alert-danger">
                                 사용자ID 또는 비밀번호를 확인해 주세요.
                             </div>
                         </div>
-                        <div class="text-center mb-3">
+                        <div class="text-center">
                             <i  class="fab fa-bootstrap fa-5x text-secondary">
                                 <a th:href="@{/}"><img th:src="@{/img/FIFA_LOGO.png}" class="rounded mx-auto d-block py-3"/></a>
                             </i>
@@ -25,20 +25,19 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="username" placeholder="Email" required="" type="email" /><label>Email</label>
+                            <input class="form-control" id="username" placeholder="Email" required="" type="email" name="username"/><label>Email</label>
                         </div>
-                        <div class="form-floating ">
-                            <input class="form-control" id="password" placeholder="Password" required="" type="password" /><label>Password</label>
+                        <div class="form-floating mb-3 ">
+                            <input class="form-control" id="password" placeholder="Password" required="" type="password" name="password" /><label>Password</label>
+                        </div>
+                        <div>
+                            <button id="btn-join" class="btn btn-primary fw-bold w-100 bg-gradient">로그인</button>
                         </div>
                     </form>
                     <div class="bg-white border border-top-0 px-5" >
-                        <div class="mb-3">
-                            <button id="btn-join" class="btn btn-primary fw-bold w-100 bg-gradient">로그인</button>
-                        </div>
-                        <p class="my-3 text-center or">
-                            또는
-                        </p>
-                        <div class="mb-2 form-group row mb-3 ">
+
+
+                        <div class="mb-2 form-group row mb-4 ">
                             <div class="col-6 kakao">
                                 <a href="#"><img th:src="@{/img/kakao_button.png}" style="max-width: 100%; height: auto;" class="rounded mx-auto d-block" ></a>
                             </div>
@@ -50,7 +49,7 @@
                     </div>
                     <div class="bg-white py-4 px-5 text-center border mt-4 mb-2">
                         <p class="m-0">
-                            이미 회원이신가요? &nbsp<a href="/user/login" style="color: #5383E8">로그인</a>
+                            계정이 없으십니까? &nbsp<a href="/user/login" style="color: #5383E8">회원가입</a>
                         </p>
                     </div>
                     <div class="small text-center ">

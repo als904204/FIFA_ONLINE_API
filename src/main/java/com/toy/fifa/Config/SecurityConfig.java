@@ -36,11 +36,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/**").permitAll()
-            .and().formLogin()
+                .anyRequest().permitAll()
+                .and().formLogin()
                 .loginPage("/user/login")
+                .loginProcessingUrl("/user/loginProc")
                 .defaultSuccessUrl("/")
                 .permitAll()
-            .and().logout().
+                .and().logout().
                 invalidateHttpSession(true) // remove session
                 .logoutSuccessUrl("/")
                 .permitAll();

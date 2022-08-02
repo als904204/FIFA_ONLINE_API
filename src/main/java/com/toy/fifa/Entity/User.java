@@ -29,11 +29,15 @@ public class User {
     @Column(unique = true)
     private String username;
 
-    public User(Long id, String nickname, String password, String username) {
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;
+
+    public User(Long id, String nickname, String password, String username, UserRole userRole) {
         this.id = id;
         this.nickname = nickname;
         this.password = password;
         this.username = username;
+        this.userRole = userRole;
     }
 
 
