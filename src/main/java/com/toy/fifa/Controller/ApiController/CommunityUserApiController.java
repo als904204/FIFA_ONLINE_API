@@ -57,7 +57,7 @@ public class CommunityUserApiController {
             return getResponseMessageResponseEntity(HttpStatus.BAD_REQUEST.value(), "BAD_REQUEST_ERROR_FILED_VALUE",HttpStatus.BAD_REQUEST);
         }
 
-        userService.join(userJoinForm.getNickname(),userJoinForm.getEmail(),userJoinForm.getPassword());
+        userService.join(userJoinForm.getNickname(),userJoinForm.getUsername(),userJoinForm.getPassword());
         return getResponseMessageResponseEntity(HttpStatus.CREATED.value(), "Successful join ", HttpStatus.OK);
 
     }

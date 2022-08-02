@@ -20,19 +20,20 @@ public class User {
 
     // 사용자 아이디
     @Column(nullable = false, unique = true)
-    private String nickname; // TODO : 닉네임으로 변경 해야 함
+    private String nickname;
 
     @Column(nullable = false,length = 255)
     private String password;
 
+    // email
     @Column(unique = true)
-    private String email;
+    private String username;
 
-    public User(Long id, String nickname, String password, String email) {
+    public User(Long id, String nickname, String password, String username) {
         this.id = id;
         this.nickname = nickname;
         this.password = password;
-        this.email = email;
+        this.username = username;
     }
 
 

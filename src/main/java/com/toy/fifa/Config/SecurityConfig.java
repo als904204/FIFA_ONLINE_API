@@ -37,17 +37,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/**").permitAll()
             .and().formLogin()
-                .loginPage("/user/join")
+                .loginPage("/user/login")
                 .defaultSuccessUrl("/")
                 .permitAll()
             .and().logout().
                 invalidateHttpSession(true) // remove session
                 .logoutSuccessUrl("/")
-                .permitAll()
-            .and().sessionManagement()
-                .maximumSessions(1) // 세션 허용 개수
-                .expiredUrl("/user/join")  // 세션 만료시 이동 페이지
-                .maxSessionsPreventsLogin(true); // 동일한 사용자 로그인 불가능
+                .permitAll();
 
     }
 }

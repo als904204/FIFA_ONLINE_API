@@ -1,7 +1,7 @@
 package com.toy.fifa.Controller.ExceptionController;
 
 
-import com.toy.fifa.Config.ExceptionConfig.DuplicatedEmailException;
+import com.toy.fifa.Config.ExceptionConfig.DuplicatedUsernameException;
 import com.toy.fifa.Config.ExceptionConfig.DuplicatedUserException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -23,9 +23,9 @@ public class ExceptionLabRestControllerAdvice {
     }
 
     // 중복 이메일 예외외
-    @ExceptionHandler(DuplicatedEmailException.class)
+    @ExceptionHandler(DuplicatedUsernameException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public String duplicatedEmailExceptionHandler(DuplicatedEmailException e) {
+    public String duplicatedEmailExceptionHandler(DuplicatedUsernameException e) {
         log.error("DuplicatedEmailException={}", e.getMessage());
         return e.getMessage();
     }

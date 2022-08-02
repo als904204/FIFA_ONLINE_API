@@ -26,7 +26,7 @@ public class UserJoinForm {
 
     @NotEmpty(message = "이메일은 필수항목입니다.")
     @Email
-    private String email;
+    private String username;
 
 
 }

@@ -1,7 +1,7 @@
 package com.toy.fifa.Service.Community;
 
 
-import com.toy.fifa.Config.ExceptionConfig.DuplicatedEmailException;
+import com.toy.fifa.Config.ExceptionConfig.DuplicatedUsernameException;
 import com.toy.fifa.Config.ExceptionConfig.DuplicatedUserException;
 import com.toy.fifa.Entity.User;
 import com.toy.fifa.Repository.UserRepository;
@@ -21,13 +21,13 @@ public class UserService {
 
     // TODO : User Entity -> DTO 로 받고 DTO -> Entity 로 변환 후 db 에 save
     @Transactional
-    public User join(String nickname, String email, String password) {
+    public User join(String nickname, String username, String password) {
         duplicatedUserByNickname(nickname);
-        duplicatedUserByEmail(email);
+        duplicatedUserByUsername(username);
         User joinUser = new User();
         String encodedPassword = passwordEncoder.encode(password);
         joinUser.setNickname(nickname);
-        joinUser.setEmail(email);
+        joinUser.setUsername(username);
         joinUser.setPassword(encodedPassword);
         userRepository.save(joinUser);
         return joinUser;
@@ -41,9 +41,9 @@ public class UserService {
     }
 
     // 중복 메일
-    private void duplicatedUserByEmail(String email) {
-        if (findByEmail(email).isPresent()) {
-            throw new DuplicatedEmailException();
+    private void duplicatedUserByUsername(String username) {
+        if (findByUsername(username).isPresent()) {
+            throw new DuplicatedUsernameException();
         }
     }
 
@@ -59,8 +59,8 @@ public class UserService {
         return userRepository.findByNickname(nickname);
     }
 
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
 

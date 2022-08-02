@@ -8,7 +8,7 @@ let userInfo = {
     userJoin:function () {
         let data = {
             nickname : $("#nickname").val(),
-            email : $("#email").val(),
+            username : $("#username").val(),
             password : $("#password").val(),
             confirmPassword : $("#confirmPassword").val()
         };
@@ -29,6 +29,7 @@ let userInfo = {
 
         if (data.password.length < 8) {
             alert('비밀번호는 8글자 이상입니다.')
+            $("password").focus();
             return false;
         }
 
