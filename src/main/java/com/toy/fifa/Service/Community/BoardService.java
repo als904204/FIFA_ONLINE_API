@@ -51,8 +51,8 @@ public class BoardService {
     }
 
     // 게시글 삭제
-    public void deleteAllBoards() {
-         boardRepository.deleteAll();
+    public void deleteAllBoards(Long id) {
+        boardRepository.deleteById(id);
     }
 
 }

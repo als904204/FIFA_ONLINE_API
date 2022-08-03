@@ -1,7 +1,9 @@
 package com.toy.fifa.Controller;
 
 import com.toy.fifa.Entity.Board;
+import com.toy.fifa.Entity.Reply;
 import com.toy.fifa.Service.Community.BoardService;
+import com.toy.fifa.Service.Community.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -23,6 +25,7 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+    private final ReplyService replyService;
 
     @RequestMapping("/boardList")
     public String boardList(Model model, @PageableDefault(page = 0, size = 5,sort = "id",direction = Sort.Direction.DESC) Pageable pageable, Principal principal) {
@@ -54,7 +57,6 @@ public class BoardController {
 
     @DeleteMapping("/boardDelete")
     public String boardDelete() {
-        boardService.deleteAllBoards();
         log.warn("모든 게시글 삭제");
         return "redirect:/board/boardList";
     }
