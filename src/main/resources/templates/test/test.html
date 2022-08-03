@@ -2,68 +2,90 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입</title>
-    <link th:href="@{/css/userJoin.css}" rel="stylesheet">
-    <div th:replace="/layout/config.html :: fragment-config"></div>
+    <head>
+        <div th:replace="/layout/header.html :: fragment-header"></div>
+        <link th:href="@{/css/boardList.css}" rel="stylesheet">
+        <div th:replace="/layout/navbar.html :: fragment-nav"></div>
+    </head>
+
 </head>
-<body>
-<section class="py-4">
-    <div class="container">
-        <div class="row d-flex align-items-center justify-content-center">
-            <div style="max-width:420px;">
-                <form action="#" class="bg-white border py-4 px-5" method="get">
-                    <div class="text-center mb-3">
-                        <i class="fab fa-bootstrap fa-5x text-secondary mb-2"></i>
-                        <p class="text-muted fw-bold">
-                            Sign up to see your FIFA-ONLINE4 information.
-                        </p>
-                    </div>
+<body style="background: #EBEEF1">
+<div class="row py-5">
+    <div class="col-12 ">
+        <h1 style="text-align: center;">
+            로고
+        </h1>
+    </div>
+</div>
+<div class="container overflow-hidden" >
 
-                    <p class="my-3 text-center or">
-                        Join
-                    </p>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" name="email" placeholder="Email" required="" type="email" /><label>Email</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" name="username" placeholder="ID" required="" type="text" /><label>ID</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" name="nickname" placeholder="Nickname" required="" type="text" /><label>Nickname</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" name="password" placeholder="Password" required="" type="password" /><label>Password</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" name="confirmPassword" placeholder="password confirm" required="" type="password" /><label>password confirm</label>
-                    </div>
-                    <div class="mb-3">
-                        <button class="btn btn-primary fw-bold w-100 bg-gradient" href="#" type="submit">Sign Up</button>
-                    </div>
-                    <div class="mb-2 form-group row ">
-                        <div class="col-6 ">
-                            <a href="#"><img th:src="@{/img/kakao_button.png}" style="max-width: 100%; height: auto;" class="rounded mx-auto d-block" ></a>
-                        </div>
-                        <div class="col-6">
-                            <a  href="#"><img th:src="@{/img/google_login.png}" style="max-width: 100%; height: auto; border: black" class="rounded mx-auto d-block" ></a>
-                        </div>
-                    </div>
+    <div class="row px-5 gy-5">
+        <div class="col-4">
+            <div class="p-3 border bg-white py-4" style="height: 40rem;">
 
-
-                </form>
-                <div class="bg-white py-4 px-5 text-center border mt-4 mb-2">
-                    <p class="m-0">
-                        Have an account? <a href="#">Log In</a>
-                    </p>
+                <!-- 아이콘, 사용자 닉네임 -->
+                <div class="row">
+                    <div class="col-3  mb-5">
+                        <img th:src="@{/img/gitHub.png}" class="img-thumbnail" alt="...">
+                    </div>
+                    <div class="col mb-5">
+                        사용자이름
+                    </div>
                 </div>
 
-                <div class="small text-center ">
-                    <a href="https://developers.nexon.com/fifaonline4"><p class="mb-1">Data based on NEXON DEVELOPERS</p></a>
-                    <a href="https://github.com/als904204" target = "_blank"><img th:src="@{/img/gitHub.png}" alt="githubLOGO" class="rounded mx-auto d-block" ></a>
+                <!-- 내가 쓴 글, 내 댓글, 내 정보 -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <input class="btn btn-outline-primary  btn-block" style=" width: 6rem; height: 3rem "  type="button" onclick="" value="내가 쓴 글"/>
+                    </div>
+                    <div class="col">
+                        <input class="btn btn-outline-primary btn-block" style=" width: 6rem;  height: 3rem" type="button" onclick="" value="내 댓글"/>
+                    </div>
+                    <div class="col">
+                        <input class="btn btn-outline-primary  btn-block" style=" width: 6rem;  height: 3rem" type="button" onclick="" value="내 정보"/>
+                    </div>
+                </div>
+                <hr class="mb-2">
+                <div class="sidebar-menu">
+                    <ul>
+                        <li><a href="#">메뉴1</a></li>
+                        <ul class="ml-2 ">
+                            <li><a href="#">메뉴1-1</a></li>
+                            <li><a href="#">메뉴1-2</a></li>
+                            <li><a href="#">메뉴1-3</a></li>
+                        </ul>
+                    </ul>
+                    <hr class="mb-2">
+                    <ul>
+                        <li><a href="#">메뉴2</a></li>
+                        <ul class="ml-2 ">
+                            <li><a href="#">메뉴2-1</a></li>
+                            <li><a href="#">메뉴2-2</a></li>
+                            <li><a href="#">메뉴2-3</a></li>
+                        </ul>
+                    </ul>
+                    <hr class="mb-2">
+                    <ul>
+                        <li><a href="#">메뉴3</a></li>
+                        <ul class="ml-2 ">
+                            <li><a href="#">메뉴3-1</a></li>
+                            <li><a href="#">메뉴3-2</a></li>
+                            <li><a href="#">메뉴3-3</a></li>
+                        </ul>
+                    </ul>
                 </div>
             </div>
         </div>
+
+        <div class="col">
+            <div class="p-3 border bg-white" style="height: 40rem;">
+                <h1>유저메뉴부분</h1>
+            </div>
+        </div>
+
     </div>
-</section>
+</div>
+<div th:replace="/layout/footer.html :: fragment-footer"></div>
+<div th:replace="/layout/config.html :: fragment-config"></div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <div th:replace="/layout/header.html :: fragment-header"></div>
     <link th:href="@{/css/boardDetail.css}" rel="stylesheet" />
@@ -47,9 +47,9 @@
          <div id="reply">
              <input type="hidden" id="boardID" th:value="${boardDetail.getId()}" >
              <div class="form-group">
-                 <textarea name="content" id="reply-content" rows="15"></textarea>
+                 <textarea name="content" id="reply-content" rows="15" sec:authorize="isAnonymous()" disabled th:field="*{boardDetail.content}" ></textarea>
              </div>
-             <button id="btn-reply-save"  type="button"  class="btn btn-primary">댓글 등록</button>
+             <button id="btn-reply-save"   type="button"  class="btn btn-primary" sec:authorize="isAuthenticated()" >댓글 등록</button>
          </div>
      </form>
     <!-- 댓글 등록 END-->

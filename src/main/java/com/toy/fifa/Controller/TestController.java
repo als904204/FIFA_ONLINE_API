@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TestController {
 
-    @GetMapping("/test/join")
+    @GetMapping("/test/bootstrap")
     public String Test() {
         return "/test/test";
     }
