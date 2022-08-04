@@ -2,23 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <head>
         <div th:replace="/layout/header.html :: fragment-header"></div>
         <link th:href="@{/css/test.css}" rel="stylesheet">
         <div th:replace="/layout/navbar.html :: fragment-nav"></div>
-    </head>
-
 </head>
 <body style="background: #EBEEF1">
-<div class="row py-5 ">
-
-    <!--메인 배너 -->
-    <div class="col-12">
-            <img th:src="@{/img/FIFA_BANNER.png}"  class="img-fluid rounded mx-auto d-block" alt="Responsive image">
+<!--메인 배너 -->
+<div class="row py-5">
+    <div class="col-12 ">
+        <img th:src="@{/img/FIFA_BANNER.png}"  class="img-fluid rounded mx-auto d-block" alt="Responsive image">
     </div>
 </div>
-<div class="container overflow-hidden" >
 
+<div class="container overflow-hidden" >
     <div class="row px-5 gy-5">
         <div class="col-4">
             <div class="p-3 border bg-white py-4" style="height: 40rem;">
@@ -145,7 +141,6 @@
             <!--댓글 작성 END-->
 
              <!-- 댓글 리스트 -->
-
             <!--인기순 최신순-->
              <div class="p-3 border bg-white " id="commentList-header">
                  <ul class="mb-3" >

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div th:replace="/layout/header.html :: fragment-header"></div>
+    <link th:href="@{/css/test.css}" rel="stylesheet">
+    <div th:replace="/layout/config.html :: fragment-config"></div>
+    <div th:replace="/layout/navbar.html :: fragment-nav"></div>
+
+</head>
+<body style="background: #EBEEF1">
+<!--메인 배너 -->
+<div class="row py-5">
+    <div class="col-12 ">
+        <img th:src="@{/img/FIFA_BANNER.png}"  class="img-fluid rounded mx-auto d-block" alt="Responsive image">
+    </div>
+</div>
+<div class="container" >
+
+    <div class="form-group">
+        <h3 th:text="${boardDetail.title}">제목</h3>
+    </div>
+    <br>
+
+    <div>
+        <div class="side">
+<!--            (아이콘)(닉네임:<span th:text="${boardDetail.user.getUsername()}"/>)-->
+            <div class="board-title ">
+                <td><span th:if="${boardDetail.author != null}" th:text="${boardDetail.author.nickname}"></span></td>
+            </div>
+        </div>
+        <div class="side fr">
+            <span id="id" style="display: none" th:text="${boardDetail.getId()}"></span>
+            조회수:<span th:text="${boardDetail.count}"/>
+            추천수:테이블X
+<!--            댓글:<span th:text="${boardDetail.getReply()}"/>-->
+        </div>
+    </div>
+
+        <div class="form-group">
+            <div th:utext="${boardDetail.content}">글 내용</div>
+        </div>
+
+    <!-- 댓글 목록 Start-->
+    <h5 th:text="|${#lists.size(boardDetail.replyList)}개의 댓글이 있습니다|"></h5>
+    <div>
+        <ul>
+            <li th:each="reply : ${boardDetail.replyList}" th:text="${reply.content}"></li>
+        </ul>
+    </div>
+    <!-- 댓글 목록 END-->
+
+    <!-- 댓글 등록 Start-->
+     <form>
+         <div id="reply">
+             <input type="hidden" id="boardID" th:value="${boardDetail.getId()}" >
+             <div class="form-group">
+                 <textarea name="content" id="reply-content" rows="15" sec:authorize="isAnonymous()" disabled th:field="*{boardDetail.content}" ></textarea>
+             </div>
+             <button id="btn-reply-save"   type="button"  class="btn btn-primary" sec:authorize="isAuthenticated()" >댓글 등록</button>
+         </div>
+     </form>
+    <!-- 댓글 등록 END-->
+    <hr>
+    <br/>
+
+</div>
+    <br>
+
+
+    <div th:replace="/layout/footer.html :: fragment-footer"></div>
+    <script src="/js/boardReply.js/"></script>
+</body>
+</html>
