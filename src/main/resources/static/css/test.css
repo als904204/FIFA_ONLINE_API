@@ -1,0 +1,7 @@
+.content-info > p{
+    width: max-content
+}
+
+.up-down-btn > input{
+    width: 5rem; height: 3rem
+}
