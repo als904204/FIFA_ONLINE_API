@@ -17,8 +17,15 @@ let userInfo = {
 
         const idCheck = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]+$/;
         if (!idCheck.test(data.nickname)) {
-            alert('닉네임은 한글 및 영어만 입력 가능합니다.');
+            alert('닉네임은 한글, 영어 및 숫자만 입력 가능합니다.');
             $("nickname").focus();
+            return false;
+        }
+
+        const emailCheck = /^[ㄱ-ㅎ|가-힣]+$/;
+        if (emailCheck.test(data.username)) {
+            alert('이메일은 영어 및 숫자만 입력 가능합니다')
+            $("username").focus();
             return false;
         }
         if(data.nickname.length < 2){
@@ -37,10 +44,7 @@ let userInfo = {
             alert('비밀번호가 일치하지 않습니다');
             return false;
         }
-
-
-
-        $.ajax({
+            $.ajax({
             type: "POST",
             url: "/api/v1/user/join",
             data: JSON.stringify(data),

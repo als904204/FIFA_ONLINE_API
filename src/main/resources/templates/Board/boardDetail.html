@@ -12,7 +12,7 @@
 <!--메인 배너 -->
 <div class="row py-5">
     <div class="col-12 ">
-        <img th:src="@{/img/FIFA_BANNER.png}"  class="img-fluid rounded mx-auto d-block" alt="Responsive image">
+        <img th:src="@{/img/FIFA_BANNER.png}"  class="img-fluid rounded mx-auto d-block w-50 p-3" alt="fo_logo">
     </div>
 </div>
 <div class="container overflow-hidden" >
@@ -160,7 +160,7 @@
             <!-- 댓글 내용 -->
             <div class="p-2  border-bottom bg-white  " id="commentList-content" th:each="reply : ${boardDetail.replyList}">
                     <div class="card-body">
-                        <div class="card-text " style="white-space: pre-line; width: max-content; height: max-content" th:text="${reply.content}">댓글 내용</div>
+                        <div class="card-text  " style="white-space: pre-line;" th:text="${reply.content}">댓글 내용</div>
                         <div class="d-flex justify-content-end">
                             <div class="badge bg-light text-dark p-2 text-start">
                                 <div class="mb-2">
