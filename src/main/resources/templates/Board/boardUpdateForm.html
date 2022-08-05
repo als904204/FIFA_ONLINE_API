@@ -19,16 +19,17 @@
 <body>
 <div class="container" >
     <form>
+        <input type="hidden" id="board-update-id" th:value="${board.id}"/>
         <div class="form-group">
-            <input id="form-title" name="title" type="text" class="form-control" placeholder="제목을 입력해주세요...">
+            <input id="form-title" th:value="${board.title}" name="title" type="text" class="form-control" placeholder="제목을 입력해주세요...">
         </div>
         <br />
         <div class="form-group">
-            <textarea id="form-content" name="content" class="form-control summernote" rows="5">
+            <textarea id="form-content" th:utext="${board.content}" name="content" class="form-control summernote" rows="5">
             </textarea>
         </div>
         <br>
-            <button id="btn-save-form" type="button" class="btn btn-primary float-right btn-lg" >등록</button>
+            <button id="btn-update-form" type="button" class="btn btn-primary float-right btn-lg" >수정</button>
     </form>
 </div>
 
@@ -44,7 +45,7 @@
 </script>
 </body>
 
-<script src="/js/boardSaveForm.js"></script>
+<script src="/js/boardUpdateForm.js"></script>
 <footer th:replace="/layout/footer.html :: fragment-footer"></footer>
 </body>
 </html>

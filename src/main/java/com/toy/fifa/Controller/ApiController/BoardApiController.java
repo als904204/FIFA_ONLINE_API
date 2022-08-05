@@ -36,13 +36,22 @@ public class BoardApiController {
         User author = userService.findByUsername(principal.getName());
 
         Board createdBoard = boardService.createBoard(board,author);
-        httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
         responseMessage.setData(createdBoard);
         return getResponseMessageResponseEntity(HttpStatus.OK.value(), "게시글이 성공적으로 작성되었습니다", HttpStatus.OK);
     }
 
+    @PutMapping("/api/v1/board/{id}")
+    public ResponseEntity<ResponseMessage> boardUpdate(@PathVariable Long id, @RequestBody Board board) {
+
+        Board updatedBoard = boardService.updateBoard(id, board);
+        responseMessage.setData(updatedBoard);
+        return getResponseMessageResponseEntity(HttpStatus.OK.value(), "게시글이 성공적으로 수정되었습니다", HttpStatus.OK);
+
+    }
+
     // TODO : 메서드 공통
-    private ResponseEntity<ResponseMessage> getResponseMessageResponseEntity(int httpsStatus, String HttpMessage, HttpStatus httpResponseStatus ) {
+    private ResponseEntity<ResponseMessage> getResponseMessageResponseEntity(int httpsStatus, String HttpMessage, HttpStatus httpResponseStatus) {
+        httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
         responseMessage.setStatus(httpsStatus);
         responseMessage.setMessage(HttpMessage);
         return new ResponseEntity<>(responseMessage, httpHeaders, httpResponseStatus);

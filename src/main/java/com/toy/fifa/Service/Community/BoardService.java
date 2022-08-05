@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
@@ -23,25 +24,15 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    /**
-     * Gets board list.
-     *
-     * @param pageable the pageable
-     * @return the board list
-     */
-// 모든 게시글 조회
+
+    // 모든 게시글 조회
     public Page<Board> getBoardList(Pageable pageable) {
         Page<Board> boardList = boardRepository.findAll(pageable);
         return boardList;
     }
 
-    /**
-     * Gets board detail.
-     *
-     * @param id the id
-     * @return the board detail
-     */
-// 게시글 자세히 보기
+
+    // 게시글 자세히 보기
     public Board getBoardDetail(Long id) {
        Board board =  boardRepository.findById(id).orElseThrow(()-> {
            return new DataNotFoundException("해당 게시글을 찾을 수 없습니다 : " + id);
@@ -49,15 +40,10 @@ public class BoardService {
        return board;
     }
 
-    /**
-     * Create board board.
-     *
-     * @param boardDTO the board dto
-     * @param author   the author
-     * @return the board
-     */
-// 게시글 작성
+
+    // 게시글 작성
     // TODO : DTO 변경 > 작성자값만 가져와야 되는데 유저 모든 값 가져옴
+    @Transactional
     public Board createBoard(Board boardDTO, User author) {
         Board board = new Board();
         board.setTitle(boardDTO.getTitle());
@@ -68,15 +54,26 @@ public class BoardService {
         return board;
     }
 
+    @Transactional
+    public Board updateBoard(Long id, Board requestBoard) {
+        // 영속화
+        Board board = boardRepository.findById(id).orElseThrow(() -> {
+            throw new DataNotFoundException("게시글을 찾을 수 없습니다 해당 ID : " + id);
+        });
+        board.setTitle(requestBoard.getTitle());
+        board.setContent(requestBoard.getContent());
+        // Service 가 종료될 때 트랜잭션이 종료 > 더티체킹 > 자동 업데이트 (flush)
+        return board;
+    }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
+    // 게시글 삭제
+    public void deleteAllBoards(Long id) {
+        boardRepository.deleteById(id);
+    }
+
     public Board findByBoardId(Long id) {
         Board board = boardRepository.findById(id).orElseThrow(() -> {
-            throw new DataNotFoundException("게시글을 찾을 수 없습니다");
+            throw new DataNotFoundException("게시글을 찾을 수 없습니다 해당 ID : " + id);
         });
         return board;
     }
@@ -90,9 +87,6 @@ public class BoardService {
             return true;
     }
 
-    // 게시글 삭제
-    public void deleteAllBoards(Long id) {
-        boardRepository.deleteById(id);
-    }
+
 
 }

@@ -60,13 +60,10 @@ public class BoardController {
 
     // 수정
     @PreAuthorize("isAuthenticated()")
-    @GetMapping("/boardUpdate/{id}")
-    public String boardUpdate(@PathVariable Long id, Principal principal, BoardForm boardForm) {
-        Board board = boardService.findByBoardId(id);
-        boardService.isPrincipalUser(principal, board);
-        boardForm.setTitle(board.getTitle());
-        boardForm.setContent(boardForm.getContent());
-        return "/Board/boardSaveForm";
+    @GetMapping("/{id}/boardUpdateForm")
+    public String boardUpdate(@PathVariable Long id, Model model) {
+        model.addAttribute("board",boardService.getBoardDetail(id));
+        return "/Board/boardUpdateForm";
     }
 
 

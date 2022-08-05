@@ -102,13 +102,16 @@
                     <p class="col-2 "th:text="|댓글 ${#lists.size(boardDetail.replyList)}|">댓글 423</p>
                     <p class="col-2">추천 123</p>
                 </div>
+
+                <!-- 수정 -->
                     <a class="btn btn-outline-primary btn-sm col-1 mr-2"
-                       th:href="@{|/board/boarUpdate/${boardDetail.id}|}"
+                       th:href="@{|/board/${boardDetail.id}/boardUpdateForm|}"
                        sec:authorize="isAuthenticated()"
                        th:if="${boardDetail.author != null and #authentication.getPrincipal().getUsername == boardDetail.author.username}"
                        th:text="수정">
                     </a>
 
+                <!-- 삭제 -->
                     <a class="btn btn-outline-danger btn-sm col-1 mr-2"
                        th:href="@{|/board/delete/${boardDetail.id}|}"
                        sec:authorize="isAuthenticated()"
@@ -122,7 +125,7 @@
                 <div class="col mb-3" ><p th:utext="${boardDetail.content}">게시글 내용</p></div>
             </div>
 
-            <!-- 추천 비추천 삭제 수정 -->
+            <!-- 추천 비추천 -->
             <div class="p-5 border bg-white mb-3 " id="boardDetail-footer">
                 <div class="col text-center up-down-btn ">
                     <input class="btn btn-outline-success btn-block mr-3" type="button" onclick="" value="▲"/>
