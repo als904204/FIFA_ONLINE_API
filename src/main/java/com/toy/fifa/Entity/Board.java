@@ -30,6 +30,9 @@ public class Board {
 
     private LocalDateTime createDate;
 
+    private LocalDateTime modifyDate;
+
+
     private int count;
 
     @OneToMany(mappedBy = "board",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)

@@ -22,6 +22,8 @@ public class Reply {
 
     private LocalDateTime createDate;
 
+    private LocalDateTime modifyDate;
+
     @ManyToOne
     private Board board;
 
