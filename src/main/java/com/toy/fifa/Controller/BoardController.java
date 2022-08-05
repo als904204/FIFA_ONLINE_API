@@ -1,7 +1,7 @@
 package com.toy.fifa.Controller;
 
 import com.toy.fifa.Entity.Board;
-import com.toy.fifa.Entity.Reply;
+import com.toy.fifa.Entity.BoardForm;
 import com.toy.fifa.Service.Community.BoardService;
 import com.toy.fifa.Service.Community.ReplyService;
 import lombok.RequiredArgsConstructor;
@@ -10,13 +10,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
-import java.util.List;
 
 @Log4j2
 @RequestMapping("/board")
@@ -42,6 +43,7 @@ public class BoardController {
         return "/Board/boardList";
     }
 
+    // 조회
     @GetMapping("/boardDetail/{id}")
     public String boardDetail(Model model, @PathVariable Long id) {
         Board board = boardService.getBoardDetail(id);
@@ -49,14 +51,32 @@ public class BoardController {
         return "/Board/boardDetail";
     }
 
+    // 저장
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/boardSave")
     public String boardSave() {
         return "/Board/boardSaveForm";
     }
 
+    // 수정
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/boardUpdate/{id}")
+    public String boardUpdate(@PathVariable Long id, Principal principal, BoardForm boardForm) {
+        Board board = boardService.findByBoardId(id);
+        boardService.isPrincipalUser(principal, board);
+        boardForm.setTitle(board.getTitle());
+        boardForm.setContent(boardForm.getContent());
+        return "/Board/boardSaveForm";
+    }
+
+
+
+
+    // 삭제
+    @PreAuthorize("isAuthenticated()")
     @DeleteMapping("/boardDelete")
     public String boardDelete() {
+
         log.warn("모든 게시글 삭제");
         return "redirect:/board/boardList";
     }
