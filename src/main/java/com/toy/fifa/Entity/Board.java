@@ -1,6 +1,7 @@
 package com.toy.fifa.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,12 +36,15 @@ public class Board {
 
     private int count;
 
-    @OneToMany(mappedBy = "board",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties({"board"}) // 댓글 무한참조 방지가 됨 == getter 호출을 막음
+    @OrderBy("id desc") // Board를 부를 때, replys_id 기준으로 내림차순으로 정렬을함 - 즉 최근 댓글이 맨 위
     private List<Reply> replyList;
 
 
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE) // Board 테이블 조회할 때 유저 ID 값을 무조건 가져옴
+
+    @ManyToOne(fetch = FetchType.EAGER) // EAGER은 호출할 때 바로 로드하는 것임
     @JoinColumn(name = "userId")
     private User author;
 

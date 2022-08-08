@@ -15,9 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.security.Principal;
 import java.time.LocalDateTime;
 
-/**
- * The type Board service.
- */
+
 @RequiredArgsConstructor
 @Service
 public class BoardService {
@@ -26,6 +24,7 @@ public class BoardService {
 
 
     // 모든 게시글 조회
+    @Transactional(readOnly = true)
     public Page<Board> getBoardList(Pageable pageable) {
         Page<Board> boardList = boardRepository.findAll(pageable);
         return boardList;
@@ -33,6 +32,7 @@ public class BoardService {
 
 
     // 게시글 자세히 보기
+    @Transactional(readOnly = true)
     public Board getBoardDetail(Long id) {
        Board board =  boardRepository.findById(id).orElseThrow(()-> {
            return new DataNotFoundException("해당 게시글을 찾을 수 없습니다 : " + id);
@@ -58,7 +58,6 @@ public class BoardService {
     public Board updateBoard(Long id, Board requestBoard,Principal principal) {
 
 
-
         // 영속화
         Board board = boardRepository.findById(id).orElseThrow(() -> {
             throw new DataNotFoundException("게시글을 찾을 수 없습니다 해당 ID : " + id);
@@ -76,6 +75,13 @@ public class BoardService {
     }
 
     // 게시글 삭제
+    @Transactional
+    public void deleteBoard(Long id) {
+        Board board = findByBoardId(id);
+        boardRepository.deleteById(id);
+    }
+
+    @Transactional
     public void deleteAllBoards(Long id) {
         boardRepository.deleteById(id);
     }

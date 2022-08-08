@@ -110,7 +110,7 @@
                     <p class="col-2">추천 123</p>
                 </div>
 
-                <!-- 수정 -->
+                    <!-- 수정 -->
                     <a class="btn btn-outline-primary btn-sm col-1 mr-2"
                        th:href="@{|/board/${boardDetail.id}/boardUpdateForm|}"
                        sec:authorize="isAuthenticated()"
@@ -118,9 +118,10 @@
                        th:text="수정">
                     </a>
 
-                <!-- 삭제 -->
+                    <!-- 삭제 -->
+
                     <a class="btn btn-outline-danger btn-sm col-1 mr-2"
-                       th:href="@{|/board/delete/${boardDetail.id}|}"
+                       id="btn-board-delete"
                        sec:authorize="isAuthenticated()"
                        th:if="${boardDetail.author != null and #authentication.getPrincipal().getUsername == boardDetail.author.username}"
                        th:text="삭제">
@@ -202,6 +203,6 @@
 
     <div th:replace="/layout/footer.html :: fragment-footer"></div>
     <script src="/js/boardReply.js/"></script>
-
+    <script src="/js/boardMain.js/"></script>
 </body>
 </html>

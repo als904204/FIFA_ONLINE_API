@@ -5,7 +5,20 @@ import java.util.Arrays;
 
 public class ApiExample {
 
-    public static void main(String[] args) {
+}
 
+class Car {
+    String color;
+    String gearType;
+    int door;
+
+    public Car(String white, String auto, int i) {
     }
+
+    Car() {
+        this("white", "auto", 4);
+    }
+
+
+
 }

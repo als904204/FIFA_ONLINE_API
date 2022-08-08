@@ -62,8 +62,20 @@ public class BoardApiController {
 
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @DeleteMapping("/api/v1/board/{id}")
+    public ResponseEntity<ResponseMessage> boardDelete(@PathVariable Long id) {
+
+        // TODO : 현재 사용자와 게시글 작성자 비교 해야 함
+        log.info("삭제할ID={}",id);
+        boardService.deleteBoard(id);
+        return getResponseMessageResponseEntity(HttpStatus.OK.value(), "게시글이 성공적으로 삭제되었습니다", HttpStatus.OK);
+
+    }
+
     // TODO : 메서드 공통
     private ResponseEntity<ResponseMessage> getResponseMessageResponseEntity(int httpsStatus, String HttpMessage, HttpStatus httpResponseStatus) {
+
         httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
         responseMessage.setStatus(httpsStatus);
         responseMessage.setMessage(HttpMessage);

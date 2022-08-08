@@ -75,11 +75,10 @@ public class BoardController {
 
     // 삭제
     @PreAuthorize("isAuthenticated()")
-    @DeleteMapping("/boardDelete")
-    public String boardDelete() {
-
-        log.warn("모든 게시글 삭제");
-        return "redirect:/board/boardList";
+    @DeleteMapping("/{id}/boardDelete")
+    public String boardDelete(@PathVariable Long id) {
+        log.warn("게시글 삭제");
+        return "";
     }
 
 
