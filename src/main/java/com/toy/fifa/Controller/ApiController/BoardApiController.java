@@ -3,6 +3,7 @@ package com.toy.fifa.Controller.ApiController;
 
 import com.toy.fifa.DTO.ResponseMessage;
 import com.toy.fifa.Entity.Board;
+import com.toy.fifa.Entity.BoardForm;
 import com.toy.fifa.Entity.User;
 import com.toy.fifa.Service.Community.BoardService;
 import com.toy.fifa.Service.Community.UserService;
@@ -13,8 +14,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.nio.charset.Charset;
 import java.security.Principal;
 
@@ -40,10 +43,20 @@ public class BoardApiController {
         return getResponseMessageResponseEntity(HttpStatus.OK.value(), "게시글이 성공적으로 작성되었습니다", HttpStatus.OK);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PutMapping("/api/v1/board/{id}")
-    public ResponseEntity<ResponseMessage> boardUpdate(@PathVariable Long id, @RequestBody Board board) {
+    public ResponseEntity<ResponseMessage> boardUpdate(@PathVariable Long id,
+                                                       @RequestBody Board board,
+                                                        Principal username,
+                                                       BindingResult bindingResult) {
 
-        Board updatedBoard = boardService.updateBoard(id, board);
+        if (bindingResult.hasErrors()) {
+            return getResponseMessageResponseEntity(HttpStatus.BAD_REQUEST.value(), "bindingResult 오류 : " + bindingResult, HttpStatus.BAD_REQUEST);
+        }
+        log.info("Principal={}",username);
+        log.info("Principal.getName()={}",username.getName());
+
+        Board updatedBoard = boardService.updateBoard(id, board,username);
         responseMessage.setData(updatedBoard);
         return getResponseMessageResponseEntity(HttpStatus.OK.value(), "게시글이 성공적으로 수정되었습니다", HttpStatus.OK);
 

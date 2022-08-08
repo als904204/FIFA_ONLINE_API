@@ -20,6 +20,7 @@
 <div class="container" >
     <form>
         <input type="hidden" id="board-update-id" th:value="${board.id}"/>
+        <input type="hidden" id="board-author" th:value="${board.author.username}"/>
         <div class="form-group">
             <input id="form-title" th:value="${board.title}" name="title" type="text" class="form-control" placeholder="제목을 입력해주세요...">
         </div>

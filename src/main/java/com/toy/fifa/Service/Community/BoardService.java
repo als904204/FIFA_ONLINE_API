@@ -55,13 +55,22 @@ public class BoardService {
     }
 
     @Transactional
-    public Board updateBoard(Long id, Board requestBoard) {
+    public Board updateBoard(Long id, Board requestBoard,Principal principal) {
+
+
+
         // 영속화
         Board board = boardRepository.findById(id).orElseThrow(() -> {
             throw new DataNotFoundException("게시글을 찾을 수 없습니다 해당 ID : " + id);
         });
+
+        // 현재 로그인한 유저 세션 == 작성된 게시글 유저 비교
+        isPrincipalUser(principal, board);
+
+
         board.setTitle(requestBoard.getTitle());
         board.setContent(requestBoard.getContent());
+        board.setModifyDate(LocalDateTime.now());
         // Service 가 종료될 때 트랜잭션이 종료 > 더티체킹 > 자동 업데이트 (flush)
         return board;
     }
