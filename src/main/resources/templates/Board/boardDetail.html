@@ -27,7 +27,14 @@
                         <img th:src="@{/img/gitHub.png}" class="img-thumbnail" alt="...">
                     </div>
                     <div class="col">
-                        <p th:with="auth=${#authentication.getPrincipal()}">잠시 테스트(사용자이름)</p>
+                    <!-- 현재 로그인한 유저 닉네임    -->
+                        <p
+                           sec:authorize="isAuthenticated()"
+                           th:if="${#authentication.getPrincipal().getNickname != null}"
+                           th:text="${#authentication.getPrincipal().getNickname}">
+                        </p>
+                        <!-- 로그인하지 않았을 경우    -->
+                        <a sec:authorize="!isAuthenticated()">비로그인</a>
                     </div>
                 </div>
                 <!-- 아이콘, 사용자 닉네임 END -->

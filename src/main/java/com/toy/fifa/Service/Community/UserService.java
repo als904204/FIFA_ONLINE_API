@@ -59,13 +59,16 @@ public class UserService {
         return user;
     }
 
-    public Optional<User> findByNickname(String nickname) {
+    // 닉네임으로 유저 찾기
+    public User findByNickname(String nickname) {
         Optional<User> user = userRepository.findByNickname(nickname);
-        if (user.isEmpty()) {
-            throw new DataNotFoundException("해당 닉네임 유저를 찾을 수 없습니다");
+        if (user.isPresent()) {
+            return user.get();
+        }else{
+            throw new DataNotFoundException("해당 nickname 유저를 찾을 수 없습니다 : " + nickname);
         }
-        return user;
     }
+
 
     public User findByUsername(String username) {
         Optional<User> user = userRepository.findByUsername(username);
@@ -75,4 +78,7 @@ public class UserService {
             throw new DataNotFoundException("해당 username 유저를 찾을 수 없습니다");
         }
     }
+
+
+
 }

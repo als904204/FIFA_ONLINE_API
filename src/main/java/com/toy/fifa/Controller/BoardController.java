@@ -2,8 +2,10 @@ package com.toy.fifa.Controller;
 
 import com.toy.fifa.Entity.Board;
 import com.toy.fifa.Entity.BoardForm;
+import com.toy.fifa.Entity.User;
 import com.toy.fifa.Service.Community.BoardService;
 import com.toy.fifa.Service.Community.ReplyService;
+import com.toy.fifa.Service.Community.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -27,6 +29,7 @@ public class BoardController {
 
     private final BoardService boardService;
     private final ReplyService replyService;
+    private final UserService userService;
 
     @RequestMapping("/boardList")
     public String boardList(Model model, @PageableDefault(page = 0, size = 5,sort = "id",direction = Sort.Direction.DESC) Pageable pageable, Principal principal) {
@@ -46,6 +49,7 @@ public class BoardController {
     // 조회
     @GetMapping("/boardDetail/{id}")
     public String boardDetail(Model model, @PathVariable Long id) {
+
         Board board = boardService.getBoardDetail(id);
         model.addAttribute("boardDetail", board);
         return "/Board/boardDetail";
