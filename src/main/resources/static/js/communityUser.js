@@ -58,13 +58,16 @@ let userInfo = {
                 alert("중복된 닉네임입니다");
                 return false;
             }
+
             if (error.responseText === "중복된 이메일입니다") {
                 alert("중복된 이메일입니다");
                 return false;
             }
-            else
-                console.log(JSON.stringify(error));
-                alert(error)
+            else{
+                alert('아이디 형식이 잘못되었습니다');
+                return false;
+            }
+
         });
     }
 };

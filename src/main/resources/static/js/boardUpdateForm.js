@@ -28,7 +28,7 @@ const main = {
                 data: JSON.stringify(data), // data 를 json 형태로 윗 url 로 보냄
                 dataType: `json`
             }).done(function (res) {
-                alert("글쓰기가 완료되었습니다");
+                alert("수정이 완료되었습니다");
                 location.href="/board/boardList"
             }).fail(function (error) {
                 console.log(error);
