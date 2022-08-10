@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -29,6 +30,7 @@ public class Board {
     @Lob // 대용량
     private String content;
 
+    @DateTimeFormat(pattern = "yyyy-mm-dd HH:mm")
     private LocalDateTime createDate;
 
     private LocalDateTime modifyDate;
@@ -45,7 +47,7 @@ public class Board {
 
 
     @ManyToOne(fetch = FetchType.EAGER) // EAGER은 호출할 때 바로 로드하는 것임
-    @JoinColumn(name = "userId")
+    @JoinColumn(name="userId")
     private User author;
 
 }
