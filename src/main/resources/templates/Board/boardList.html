@@ -39,7 +39,11 @@
             </div>
             <div>
                 <h4 class="mb-2 text-muted" th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}">게시글 작성일</h4>
+                <div th:if="${board.modifyDate != null}" class="badge bg-light text-dark ">
+                    <div th:text="|${#temporals.format(board.modifyDate, 'yyyy-MM-dd HH:mm')} 수정됨|"></div>
+                </div>
             </div>
+
         </div>
 
         <div class="card-body">
