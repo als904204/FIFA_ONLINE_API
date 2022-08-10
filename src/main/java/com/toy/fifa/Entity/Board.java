@@ -13,6 +13,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @Setter
@@ -44,10 +45,13 @@ public class Board {
     private List<Reply> replyList;
 
 
-
-
     @ManyToOne(fetch = FetchType.EAGER) // EAGER은 호출할 때 바로 로드하는 것임
     @JoinColumn(name="userId")
     private User author;
+
+    // 추천 비추천 중복 X Set
+    @ManyToMany
+    Set<User> voter;
+
 
 }

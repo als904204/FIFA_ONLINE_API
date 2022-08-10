@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -31,6 +32,10 @@ public class Reply {
     @ManyToOne
     @JoinColumn(name="userId")
     private User author;
+
+    // 추천 비추천 중복 X Set
+    @ManyToMany
+    Set<User> voter;
 
 
 

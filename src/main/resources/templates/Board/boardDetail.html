@@ -141,9 +141,14 @@
 
             <!-- 추천 비추천 -->
             <div class="p-5 border bg-white mb-3 " id="boardDetail-footer">
-                <div class="col text-center up-down-btn ">
-                    <input class="btn btn-outline-success btn-block mr-3" type="button" onclick="" value="▲"/>
-                    <input class="btn btn-outline-danger btn-block" type="button" onclick="" value="▼"/>
+                <div class="col text-center vote">
+                    <button class="btn btn-outline-success btn-block mr-3" type="button" id="vote-up-btn">
+                        <span>▲</span>
+                    </button>
+                    <button class="btn btn-outline-danger btn-block mr-3" type="button" id="vote-down-btn">
+                        <span>▼</span>
+                        <span>5</span>
+                    </button>
                 </div>
             </div>
 
