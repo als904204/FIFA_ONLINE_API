@@ -9,10 +9,16 @@ import com.toy.fifa.Repository.ReplyRepository;
 import com.toy.fifa.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.security.sasl.AuthenticationException;
+import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -42,7 +48,19 @@ public class ReplyService {
     }
 
     @Transactional
-    public void replyDelete(Long id) {
+    public void replyDelete(Long id, Principal principal) {
+        User user = userRepository.findByUsername(principal.getName()).orElseThrow(
+                () -> new DataNotFoundException("해당 유저를 찾을 수 없습니다 : " + principal.getName())
+        );
+
+        Reply reply = replyRepository.findById(id).orElseThrow(
+                () -> new DataNotFoundException("해당 댓글을 찾을 수 없습니다 댓글 ID : " + id)
+        );
+
+        if (!reply.getAuthor().getUsername().equals(user.getUsername())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"삭제할 권한이 없습니다");
+        }
+
         replyRepository.deleteById(id);
     }
 

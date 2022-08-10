@@ -98,16 +98,20 @@
         <div class="col-8 " id="boardDetail">
             <!-- 게시글 제목 -->
             <div class="p-5 border bg-white " id="boardDetail-header" style="height: max-content;">
-                <div class="col mb-3">
-                    <p class="display-4" th:text="${boardDetail.title}">게시글 제목</p>
+                <div class="row mb-3">
+                    <p class="col-12 display-4 mb-1" th:text="${boardDetail.title}">게시글 제목</p>
+                    <div th:if="${boardDetail.modifyDate != null}" class=" col-4 mx-2 badge bg-light text-dark p-2 text-start">
+                        <div th:text="|${#temporals.format(boardDetail.modifyDate, 'yyyy-MM-dd HH:mm')} 수정됨|"></div>
+                    </div>
                 </div>
                 <div class="row mb-3 content-info">
                     <p class="col-2 " >카테고리</p>
-                    <p class="col-2" th:text="${boardDetail.createDate}">2022-08-03 14:41</p>
+                    <p class="col-2" th:text="${#temporals.format(boardDetail.createDate, 'yyyy-MM-dd HH:mm')}">2022-08-03 14:41</p>
                     <p class="col-5" th:text="${boardDetail.author.nickname}">유저닉네임1345</p>
                     <p class="col-2" th:text="|조회 ${boardDetail.count}|">조회 11</p>
                     <p class="col-2 "th:text="|댓글 ${#lists.size(boardDetail.replyList)}|">댓글 423</p>
                     <p class="col-2">추천 123</p>
+
                 </div>
 
                     <!-- 수정 -->
@@ -131,7 +135,9 @@
             <!-- 게시글 내용 -->
             <div class="p-5 border bg-white "  id="boardDetail-content" style="height: max-content;">
                 <div class="col mb-3" ><p th:utext="${boardDetail.content}">게시글 내용</p></div>
+
             </div>
+
 
             <!-- 추천 비추천 -->
             <div class="p-5 border bg-white mb-3 " id="boardDetail-footer">
@@ -187,27 +193,31 @@
                 <input type="hidden" id="commentID" th:value="${reply.id}" >
                     <div class="card-body">
                         <div class="d-flex flex-row justify-content-start">
-                            <div class="p-3">
-                                <span th:if="${reply.author != null}" th:text="${reply.author.nickname}" class="text-dark panel-heading">댓글 작성자</span>
+                            <div class="p-2">
+                                <span th:if="${reply.author != null}" th:text="${reply.author.nickname}" class=" text-dark panel-heading">댓글 작성자</span>
                                 <span th:text="${#temporals.format(reply.createDate, 'yyyy-MM-dd HH:mm')}" class="text-muted" >댓글 작성 날짜</span>
+                                <div th:if="${reply.modifyDate!= null}" class=" col-4 mx-2 badge bg-light text-dark p-2 text-start">
+                                    <div th:text="|${#temporals.format(reply.modifyDate, 'yyyy-MM-dd HH:mm')} 수정됨|"></div>
+                                </div>
                             </div>
                         </div>
-                            <div class="card-text p-3" th:text="${reply.content}">
+                            <div class="card-text p-3 text-muted " th:text="${reply.content}">
                                 댓글 내용
                             </div>
-                        <div class="comment">
-                            <a class="btn btn-outline-primary btn-sm border-0"
-                               th:if="${reply.author.username == #authentication.getPrincipal().getUsername()}"
-                               th:href="@{|/board/${boardDetail.id}/boardUpdateForm|}"
-                               sec:authorize="isAuthenticated()"
-                               th:text="수정">
-                            </a>
+                        <div class="comment-delete">
                             <a class="btn btn-outline-danger btn-sm border-0 btn-comment-delete"
-
                                th:if="${reply.author.username == #authentication.getPrincipal().getUsername()}"
                                sec:authorize="isAuthenticated()"
                                th:text="삭제">
                             </a>
+                            <!-- TODO : 신고 기능? -->
+                            <a class="btn  btn-sm border-0 btn-comment-report"
+                               sec:authorize="isAuthenticated()"
+                               th:text="신고">
+                            </a>
+                            <img class="btn  btn-sm border-0 btn-comment-reply"
+                               sec:authorize="isAuthenticated()" th:src="@{/img/comment-reply.png}">
+
                         </div>
                     </div>
                 </div>

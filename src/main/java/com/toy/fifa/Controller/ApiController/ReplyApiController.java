@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
 import java.util.Optional;
@@ -40,12 +41,12 @@ public class ReplyApiController {
 
     @PreAuthorize("isAuthenticated()")
     @DeleteMapping("/api/v1/board/{id}/reply")
-    public ResponseEntity replyDelete(@PathVariable Long id) {
+    public ResponseEntity replyDelete(@PathVariable Long id, Principal principal) {
 
-        // TODO : 현재 사용자와 게시글 작성자 비교 해야 함
-        log.info("삭제할ID={}",id);
-        replyService.replyDelete(id);
-        return ResponseEntity.ok(HttpStatus.OK);
+
+       replyService.replyDelete(id,principal);
+
+       return ResponseEntity.ok(HttpStatus.OK);
 
     }
 

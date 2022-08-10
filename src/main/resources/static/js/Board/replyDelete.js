@@ -17,6 +17,7 @@ const comment = {
                 alert('삭제가 완료되었습니다');
                 location.reload();
             }).fail(function (error) {
+                alert('삭제오류');
                 console.log(JSON.stringify(error));
             });
         }
