@@ -73,6 +73,18 @@ public class BoardApiController {
 
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/api/v1/board/{id}/vote")
+    public ResponseEntity<ResponseMessage> boardVoteUp(@PathVariable Long id, Principal principal) {
+
+        log.info("추천할 게시글 ID={}", id);
+        Board board = boardService.getBoardDetail(id); // boardID
+        User user = userService.findByUsername(principal.getName()); // username
+        boardService.voteUp(board,user);
+        return getResponseMessageResponseEntity(HttpStatus.OK.value(), "추천완료", HttpStatus.OK);
+    }
+
+
     // TODO : 메서드 공통
     private ResponseEntity<ResponseMessage> getResponseMessageResponseEntity(int httpsStatus, String HttpMessage, HttpStatus httpResponseStatus) {
 

@@ -5,6 +5,7 @@ import com.toy.fifa.Entity.Board;
 import com.toy.fifa.Entity.User;
 import com.toy.fifa.Repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -12,10 +13,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.EntityExistsException;
 import java.security.Principal;
 import java.time.LocalDateTime;
 
 
+@Log4j2
 @RequiredArgsConstructor
 @Service
 public class BoardService {
@@ -102,6 +105,12 @@ public class BoardService {
             return true;
     }
 
+
+    @Transactional
+    public void voteUp(Board board, User user) {
+        board.vote(user);
+        boardRepository.save(board);
+    }
 
 
 }

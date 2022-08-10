@@ -34,7 +34,7 @@ public class Reply {
     private User author;
 
     // 추천 비추천 중복 X Set
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     Set<User> voter;
 
 

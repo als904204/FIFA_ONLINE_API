@@ -144,6 +144,7 @@
                 <div class="col text-center vote">
                     <button class="btn btn-outline-success btn-block mr-3" type="button" id="vote-up-btn">
                         <span>▲</span>
+                        <span id="vote-up-number" th:text="${#lists.size(boardDetail.voter)}">2</span>
                     </button>
                     <button class="btn btn-outline-danger btn-block mr-3" type="button" id="vote-down-btn">
                         <span>▼</span>
@@ -236,6 +237,7 @@
     <script src="/js/Board/replyCreate.js/"></script>
     <script src="/js/Board/replyDelete.js/"></script>
     <script src="/js/Board/boardDelete.js/"></script>
+    <script src="/js/Board/boardVote.js"></script>
 
 </body>
 </html>

@@ -2,12 +2,9 @@ package com.toy.fifa.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -50,8 +47,12 @@ public class Board {
     private User author;
 
     // 추천 비추천 중복 X Set
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     Set<User> voter;
+
+    public void vote(User user) {
+        getVoter().add(user);
+    }
 
 
 }
