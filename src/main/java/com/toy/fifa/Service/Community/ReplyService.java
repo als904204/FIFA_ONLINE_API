@@ -39,7 +39,11 @@ public class ReplyService {
         replyEntity.setCreateDate(LocalDateTime.now());
 
         replyRepository.save(replyEntity);
+    }
 
+    @Transactional
+    public void replyDelete(Long id) {
+        replyRepository.deleteById(id);
     }
 
 }

@@ -184,25 +184,43 @@
 
             <!-- 댓글 내용 -->
             <div class="p-2  border-bottom bg-white  " id="commentList-content" th:each="reply : ${boardDetail.replyList}">
+                <input type="hidden" id="commentID" th:value="${reply.id}" >
                     <div class="card-body">
-                        <div class="card-text  " style="white-space: pre-line;" th:text="${reply.content}">댓글 내용</div>
-                        <div class="d-flex justify-content-end">
-                            <div class="badge bg-light text-dark p-2 text-start">
-                                <div class="mb-2">
-                                    <span th:if="${reply.author != null}" th:text="${reply.author.nickname}">댓글 작성자</span>
-                                </div>
-                                <div th:text="${#temporals.format(reply.createDate, 'yyyy-MM-dd HH:mm')}">댓글 작성 날짜</div>
+                        <div class="d-flex flex-row justify-content-start">
+                            <div class="p-3">
+                                <span th:if="${reply.author != null}" th:text="${reply.author.nickname}" class="text-dark panel-heading">댓글 작성자</span>
+                                <span th:text="${#temporals.format(reply.createDate, 'yyyy-MM-dd HH:mm')}" class="text-muted" >댓글 작성 날짜</span>
                             </div>
                         </div>
+                            <div class="card-text p-3" th:text="${reply.content}">
+                                댓글 내용
+                            </div>
+                        <div class="comment">
+                            <a class="btn btn-outline-primary btn-sm border-0"
+                               th:if="${reply.author.username == #authentication.getPrincipal().getUsername()}"
+                               th:href="@{|/board/${boardDetail.id}/boardUpdateForm|}"
+                               sec:authorize="isAuthenticated()"
+                               th:text="수정">
+                            </a>
+                            <a class="btn btn-outline-danger btn-sm border-0 btn-comment-delete"
 
+                               th:if="${reply.author.username == #authentication.getPrincipal().getUsername()}"
+                               sec:authorize="isAuthenticated()"
+                               th:text="삭제">
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
 </div>
 
     <div th:replace="/layout/footer.html :: fragment-footer"></div>
-    <script src="/js/boardReply.js/"></script>
-    <script src="/js/boardMain.js/"></script>
+    <script src="/js/Board/replyCreate.js/"></script>
+    <script src="/js/Board/replyDelete.js/"></script>
+    <script src="/js/Board/boardDelete.js/"></script>
+
 </body>
 </html>
