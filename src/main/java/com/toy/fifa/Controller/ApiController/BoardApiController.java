@@ -75,7 +75,7 @@ public class BoardApiController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @PostMapping("/api/v1/board/{id}/vote")
+    @PostMapping("/api/v1/board/{id}/voteUp")
     public ResponseEntity<ResponseMessage> boardVoteUp(@PathVariable Long id, Principal principal) {
 
         log.info("추천할 게시글 ID={}", id);
@@ -85,6 +85,19 @@ public class BoardApiController {
             return getResponseMessageResponseEntity(HttpStatus.CONFLICT.value(), "이미 추천 누른 게시글입니다", HttpStatus.CONFLICT);
         }
         return getResponseMessageResponseEntity(HttpStatus.OK.value(), "추천완료", HttpStatus.OK);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/api/v1/board/{id}/voteDown")
+    public ResponseEntity<ResponseMessage> boardVoteDown(@PathVariable Long id, Principal principal) {
+
+        log.info("반대할 게시글 ID={}", id);
+        try {
+            boardService.voteDown(id,principal);
+        } catch (EntityExistsException e) {
+            return getResponseMessageResponseEntity(HttpStatus.CONFLICT.value(), "이미 반대한 게시글입니다", HttpStatus.CONFLICT);
+        }
+        return getResponseMessageResponseEntity(HttpStatus.OK.value(), "게시글 반대완료", HttpStatus.OK);
     }
 
 

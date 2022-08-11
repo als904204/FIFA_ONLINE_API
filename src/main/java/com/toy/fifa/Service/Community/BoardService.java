@@ -15,10 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.EntityExistsException;
 import java.security.Principal;
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 
 @Log4j2
@@ -112,14 +110,21 @@ public class BoardService {
 
     @Transactional
     public void voteUp(Long id, Principal principal) {
-
         Board board = findByBoardId(id);
         User user = userRepository.findByUsername(principal.getName()).orElseThrow(() -> {
             throw new UsernameNotFoundException("해당 유저를 찾을 수 없습니다 : " + principal.getName());
         });
+        board.voteUp(user);
+        boardRepository.save(board);
+    }
 
-
-        board.vote(user);
+    @Transactional
+    public void voteDown(Long id, Principal principal) {
+        Board board = findByBoardId(id);
+        User user = userRepository.findByUsername(principal.getName()).orElseThrow(() -> {
+            throw new UsernameNotFoundException("해당 유저를 찾을 수 없습니다 : " + principal.getName());
+        });
+        board.voteDown(user);
         boardRepository.save(board);
     }
 

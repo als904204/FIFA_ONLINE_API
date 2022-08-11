@@ -46,17 +46,27 @@ public class Board {
     @JoinColumn(name="userId")
     private User author;
 
-    // 추천 비추천 중복 X Set
+    // 추천 중복 X Set
     @ManyToMany(fetch = FetchType.EAGER)
-    Set<User> voter;
+    Set<User> voteUp;
 
-    public void vote(User user) {
+    // 추천 중복 X Set
+    @ManyToMany(fetch = FetchType.EAGER)
+    Set<User> voteDown;
 
-
-        if (voter.contains(user)) {
+    public void voteUp(User user) {
+        if (voteUp.contains(user)) {
             throw new EntityExistsException("해당유저가 해당게시글에 이미 추천을 했습니다");
         }else {
-            getVoter().add(user);
+            getVoteUp().add(user);
+        }
+    }
+
+    public void voteDown(User user) {
+        if (voteDown.contains(user)) {
+            throw new EntityExistsException("해당유저가 해당게시글에 이미 반대 하였습니다");
+        }else {
+            getVoteDown().add(user);
         }
     }
 

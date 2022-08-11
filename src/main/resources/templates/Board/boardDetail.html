@@ -110,7 +110,7 @@
                     <p class="col-5" th:text="${boardDetail.author.nickname}">유저닉네임1345</p>
                     <p class="col-2" th:text="|조회 ${boardDetail.count}|">조회 11</p>
                     <p class="col-2 "th:text="|댓글 ${#lists.size(boardDetail.replyList)}|">댓글 423</p>
-                    <p class="col-2" th:text="|추천수 ${#lists.size(boardDetail.voter)}|">추천수 123</p>
+                    <p class="col-2" th:text="|추천수 ${#lists.size(boardDetail.getVoteUp)}|">추천수 123</p>
 
                 </div>
 
@@ -144,11 +144,11 @@
                 <div class="col text-center vote">
                     <button sec:authorize="isAuthenticated()" class="btn btn-outline-success btn-block mr-3" type="button" id="vote-up-btn">
                         <span>▲</span>
-                        <span id="vote-up-number" th:text="${#lists.size(boardDetail.voter)}">2</span>
+                        <span id="vote-up-number" th:text="${#lists.size(boardDetail.getVoteUp)}">2</span>
                     </button>
                     <button sec:authorize="isAuthenticated()" class="btn btn-outline-danger btn-block mr-3" type="button" id="vote-down-btn">
                         <span>▼</span>
-                        <span>5</span>
+                        <span id="vote-down-number" th:text="${#lists.size(boardDetail.getVoteDown)}">5</span>
                     </button>
                 </div>
             </div>
