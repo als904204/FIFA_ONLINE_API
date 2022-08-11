@@ -51,7 +51,13 @@ public class Board {
     Set<User> voter;
 
     public void vote(User user) {
-        getVoter().add(user);
+
+
+        if (voter.contains(user)) {
+            throw new EntityExistsException("해당유저가 해당게시글에 이미 추천을 했습니다");
+        }else {
+            getVoter().add(user);
+        }
     }
 
 

@@ -17,6 +17,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityExistsException;
 import javax.validation.Valid;
 import java.nio.charset.Charset;
 import java.security.Principal;
@@ -78,9 +79,11 @@ public class BoardApiController {
     public ResponseEntity<ResponseMessage> boardVoteUp(@PathVariable Long id, Principal principal) {
 
         log.info("추천할 게시글 ID={}", id);
-        Board board = boardService.getBoardDetail(id); // boardID
-        User user = userService.findByUsername(principal.getName()); // username
-        boardService.voteUp(board,user);
+        try {
+            boardService.voteUp(id,principal);
+        } catch (EntityExistsException e) {
+            return getResponseMessageResponseEntity(HttpStatus.CONFLICT.value(), "이미 추천 누른 게시글입니다", HttpStatus.CONFLICT);
+        }
         return getResponseMessageResponseEntity(HttpStatus.OK.value(), "추천완료", HttpStatus.OK);
     }
 

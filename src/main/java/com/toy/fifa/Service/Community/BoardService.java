@@ -4,11 +4,13 @@ import com.toy.fifa.Config.ExceptionConfig.DataNotFoundException;
 import com.toy.fifa.Entity.Board;
 import com.toy.fifa.Entity.User;
 import com.toy.fifa.Repository.BoardRepository;
+import com.toy.fifa.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.persistence.EntityExistsException;
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 
 @Log4j2
@@ -24,6 +27,7 @@ import java.time.LocalDateTime;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final UserRepository userRepository;
 
 
     // 모든 게시글 조회
@@ -107,7 +111,14 @@ public class BoardService {
 
 
     @Transactional
-    public void voteUp(Board board, User user) {
+    public void voteUp(Long id, Principal principal) {
+
+        Board board = findByBoardId(id);
+        User user = userRepository.findByUsername(principal.getName()).orElseThrow(() -> {
+            throw new UsernameNotFoundException("해당 유저를 찾을 수 없습니다 : " + principal.getName());
+        });
+
+
         board.vote(user);
         boardRepository.save(board);
     }
