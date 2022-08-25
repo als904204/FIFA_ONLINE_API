@@ -2,6 +2,7 @@ package com.toy.fifa.Service.Community;
 
 import com.toy.fifa.Config.ExceptionConfig.DataNotFoundException;
 import com.toy.fifa.Entity.Board;
+import com.toy.fifa.Entity.Reply;
 import com.toy.fifa.Entity.User;
 import com.toy.fifa.Repository.BoardRepository;
 import com.toy.fifa.Repository.UserRepository;
@@ -9,14 +10,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.criteria.*;
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Log4j2
@@ -129,4 +133,7 @@ public class BoardService {
     }
 
 
+    public Page<Board> boardSearchList(String searchKeyword, Pageable pageable) {
+        return boardRepository.findByTitleContaining(searchKeyword,pageable);
+    }
 }

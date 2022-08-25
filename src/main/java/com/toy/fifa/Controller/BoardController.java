@@ -8,6 +8,7 @@ import com.toy.fifa.Service.Community.ReplyService;
 import com.toy.fifa.Service.Community.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
+import java.util.List;
 
 @Log4j2
 @RequestMapping("/board")
@@ -31,18 +33,33 @@ public class BoardController {
     private final ReplyService replyService;
     private final UserService userService;
 
+
     @RequestMapping("/boardList")
-    public String boardList(Model model, @PageableDefault(page = 0, size = 5,sort = "id",direction = Sort.Direction.DESC) Pageable pageable, Principal principal) {
-        Page<Board> boardList = boardService.getBoardList(pageable);
+    public String boardList(Model model,
+                            @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+                            Principal principal,
+                            String searchKeyword) {
+        Page<Board> boardList = null;
+
+        // 검색 키워드가 없으면 모든 게시글 조회
+        if (searchKeyword == null) {
+           boardList = boardService.getBoardList(pageable);
+        }else {
+            //검색 했다면
+            boardList = boardService.boardSearchList(searchKeyword, pageable);
+        }
+
 
         int currentPage = boardList.getPageable().getPageNumber() + 1; // 현재 페이지
-        int startPage = Math.max(currentPage - 4,1); // 현제페이지가 1일 경우 -3 이 나오는데 -3을 1과 비교 하여 더 큰값 반환
-        int endPage = Math.min(currentPage + 5,boardList.getTotalPages());
+        int startPage = Math.max(currentPage - 4, 1); // 현제페이지가 1일 경우 -3 이 나오는데 -3을 1과 비교 하여 더 큰값 반환
+        int endPage = Math.min(currentPage + 5, boardList.getTotalPages());
 
         model.addAttribute("boardList", boardList);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
+        model.addAttribute("searchKeyword", searchKeyword);
+
         return "/Board/boardList";
     }
 
@@ -66,11 +83,9 @@ public class BoardController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/{id}/boardUpdateForm")
     public String boardUpdate(@PathVariable Long id, Model model) {
-        model.addAttribute("board",boardService.getBoardDetail(id));
+        model.addAttribute("board", boardService.getBoardDetail(id));
         return "/Board/boardUpdateForm";
     }
-
-
 
 
     // 삭제

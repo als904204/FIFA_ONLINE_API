@@ -265,7 +265,18 @@ class BoardServiceTest {
     }
 
 
-
+    @Test
+    void 대량_게시글_생성() {
+        for (int i = 0; i <= 300; i++) {
+            String title = String.format("테스트 데이터입니다:[%03d]", i);
+            String content = "내용없음";
+            Board b1 = new Board();
+            b1.setTitle(title);
+            b1.setContent(content);
+            b1.setCreateDate(LocalDateTime.now());
+            boardRepository.save(b1);
+        }
+    }
 
 
 }

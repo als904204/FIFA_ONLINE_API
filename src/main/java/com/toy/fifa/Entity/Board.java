@@ -18,6 +18,8 @@ import java.util.Set;
 @Entity
 public class Board {
 
+
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
