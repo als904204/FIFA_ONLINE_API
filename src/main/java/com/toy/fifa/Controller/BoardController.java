@@ -68,6 +68,7 @@ public class BoardController {
     public String boardDetail(Model model, @PathVariable Long id) {
 
         Board board = boardService.getBoardDetail(id);
+        boardService.updateView(id);
         model.addAttribute("boardDetail", board);
         return "/Board/boardDetail";
     }

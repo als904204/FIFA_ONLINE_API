@@ -44,7 +44,6 @@ class BoardServiceTest {
         b1.setTitle("제목ddddddddddddddddd");
         b1.setContent("내용ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
         b1.setCreateDate(LocalDateTime.now());
-        b1.setCount(50);
 
 
 //        User u1 = userService.join(user);

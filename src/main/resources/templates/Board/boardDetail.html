@@ -108,7 +108,7 @@
                     <p class="col-2 " >카테고리</p>
                     <p class="col-2" th:text="${#temporals.format(boardDetail.createDate, 'yyyy-MM-dd HH:mm')}">2022-08-03 14:41</p>
                     <p class="col-5" th:text="${boardDetail.author.nickname}">유저닉네임1345</p>
-                    <p class="col-2" th:text="|조회 ${boardDetail.count}|">조회 11</p>
+                    <p class="col-2" th:text="|조회 ${boardDetail.viewCount}|">조회 11</p>
                     <p class="col-2 "th:text="|댓글 ${#lists.size(boardDetail.replyList)}|">댓글 423</p>
                     <p class="col-2" th:text="|추천수 ${#lists.size(boardDetail.getVoteUp)}|">추천수 123</p>
 

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -36,7 +37,8 @@ public class Board {
     private LocalDateTime modifyDate;
 
 
-    private int count;
+    @Column(name = "view_count", columnDefinition = "int default 0")
+    private int viewCount;
 
     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties({"board"}) // 댓글 무한참조 방지가 됨 == getter 호출을 막음
@@ -71,6 +73,8 @@ public class Board {
             getVoteDown().add(user);
         }
     }
+
+
 
 
 }

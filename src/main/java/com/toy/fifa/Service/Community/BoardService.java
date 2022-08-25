@@ -46,6 +46,7 @@ public class BoardService {
        Board board =  boardRepository.findById(id).orElseThrow(()-> {
            return new DataNotFoundException("해당 게시글을 찾을 수 없습니다 : " + id);
        });
+
        return board;
     }
 
@@ -65,8 +66,6 @@ public class BoardService {
 
     @Transactional
     public Board updateBoard(Long id, Board requestBoard,Principal principal) {
-
-
         // 영속화
         Board board = boardRepository.findById(id).orElseThrow(() -> {
             throw new DataNotFoundException("게시글을 찾을 수 없습니다 해당 ID : " + id);
@@ -74,7 +73,6 @@ public class BoardService {
 
         // 현재 로그인한 유저 세션 == 작성된 게시글 유저 비교
         isPrincipalUser(principal, board);
-
 
         board.setTitle(requestBoard.getTitle());
         board.setContent(requestBoard.getContent());
@@ -90,11 +88,7 @@ public class BoardService {
         boardRepository.deleteById(id);
     }
 
-    @Transactional
-    public void deleteAllBoards(Long id) {
-        boardRepository.deleteById(id);
-    }
-
+    // 게시글 찾기
     public Board findByBoardId(Long id) {
         Board board = boardRepository.findById(id).orElseThrow(() -> {
             throw new DataNotFoundException("게시글을 찾을 수 없습니다 해당 ID : " + id);
@@ -111,7 +105,7 @@ public class BoardService {
             return true;
     }
 
-
+    // 추천
     @Transactional
     public void voteUp(Long id, Principal principal) {
         Board board = findByBoardId(id);
@@ -122,6 +116,7 @@ public class BoardService {
         boardRepository.save(board);
     }
 
+    // 비추천
     @Transactional
     public void voteDown(Long id, Principal principal) {
         Board board = findByBoardId(id);
@@ -132,8 +127,14 @@ public class BoardService {
         boardRepository.save(board);
     }
 
-
+    // 게시글 검색 결과 리턴
     public Page<Board> boardSearchList(String searchKeyword, Pageable pageable) {
         return boardRepository.findByTitleContaining(searchKeyword,pageable);
+    }
+
+    // 게시글 조회수
+    @Transactional
+    public int updateView(Long id) {
+        return boardRepository.updateView(id);
     }
 }
